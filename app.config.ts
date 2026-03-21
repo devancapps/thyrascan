@@ -70,7 +70,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     revenueCatApiKeyIos: process.env.REVENUECAT_API_KEY_IOS ?? "",
     revenueCatApiKeyAndroid: process.env.REVENUECAT_API_KEY_ANDROID ?? "",
     eas: {
-      projectId: process.env.EAS_PROJECT_ID ?? "",
+      projectId: process.env.EAS_PROJECT_ID ?? "985ccef5-ab60-49f4-a727-1c0a2dec4466",
     },
   },
 });
