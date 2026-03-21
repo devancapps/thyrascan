@@ -121,7 +121,7 @@ export default function PaywallScreen({ navigation }: Props) {
           </View>
           <Text style={styles.title}>Go Premium</Text>
           <Text style={styles.subtitle}>
-            Unlock the full power of ADHD Food Scanner
+            Unlock the full power of ThyraScan
           </Text>
         </View>
 
@@ -174,9 +174,7 @@ export default function PaywallScreen({ navigation }: Props) {
         <View style={styles.legalLinks}>
           <TouchableOpacity
             onPress={() =>
-              Linking.openURL(
-                "https://tamotoyama.github.io/adhd-food-scanner-privacy",
-              )
+              Linking.openURL("https://thyrascan.app/privacy")
             }
           >
             <Text style={styles.legalLink}>Privacy Policy</Text>
@@ -268,7 +266,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 12,
-    backgroundColor: "#E8F8F0",
+    backgroundColor: colors.primaryLight,
     alignItems: "center",
     justifyContent: "center",
   },

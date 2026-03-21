@@ -11,7 +11,7 @@
         "simulator": false
       },
       "env": {
-        "APP_ENV": "production"
+        "APP_ENV": "development"
       }
     },
     "development:simulator": {
@@ -21,22 +21,13 @@
         "simulator": true
       },
       "env": {
-        "APP_ENV": "production"
+        "APP_ENV": "development"
       }
     },
     "preview": {
       "distribution": "internal",
       "env": {
-        "APP_ENV": "production",
-        "EXPO_PUBLIC_FIREBASE_API_KEY": "AIzaSyA0dhW2kWFqcxWWIDRhqBBdSJmMhXZUan8",
-        "EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN": "adhd-food-scanner.firebaseapp.com",
-        "EXPO_PUBLIC_FIREBASE_PROJECT_ID": "adhd-food-scanner",
-        "EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET": "adhd-food-scanner.firebasestorage.app",
-        "EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID": "865894856031",
-        "EXPO_PUBLIC_FIREBASE_APP_ID": "1:865894856031:web:2f2de15d90ea60667032ea",
-        "REVENUECAT_API_KEY_IOS": "appl_enJUuOPwLcShrjqHdDOCaopFJLK",
-        "REVENUECAT_API_KEY_ANDROID": "test_VicmjQmxermFirKJVmkucPMcDKT",
-        "EAS_PROJECT_ID": "389c95e7-c7c6-4f45-85a9-d3ae0aaac98a"
+        "APP_ENV": "production"
       }
     },
     "production": {
@@ -44,16 +35,7 @@
         "autoIncrement": true
       },
       "env": {
-        "APP_ENV": "production",
-        "EXPO_PUBLIC_FIREBASE_API_KEY": "AIzaSyA0dhW2kWFqcxWWIDRhqBBdSJmMhXZUan8",
-        "EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN": "adhd-food-scanner.firebaseapp.com",
-        "EXPO_PUBLIC_FIREBASE_PROJECT_ID": "adhd-food-scanner",
-        "EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET": "adhd-food-scanner.firebasestorage.app",
-        "EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID": "865894856031",
-        "EXPO_PUBLIC_FIREBASE_APP_ID": "1:865894856031:web:2f2de15d90ea60667032ea",
-        "REVENUECAT_API_KEY_IOS": "appl_enJUuOPwLcShrjqHdDOCaopFJLK",
-        "REVENUECAT_API_KEY_ANDROID": "test_VicmjQmxermFirKJVmkucPMcDKT",
-        "EAS_PROJECT_ID": "389c95e7-c7c6-4f45-85a9-d3ae0aaac98a"
+        "APP_ENV": "production"
       }
     }
   }

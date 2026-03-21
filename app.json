@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "adhd-food-scanner",
-    "slug": "adhd-food-scanner",
+    "name": "ThyraScan",
+    "slug": "thyrascan",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,15 +12,19 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true,
-      "buildNumber": "13",
+      "supportsTablet": false,
+      "bundleIdentifier": "com.thyrascan.app",
+      "buildNumber": "1",
+      "usesAppleSignIn": true,
       "infoPlist": {
-        "NSCameraUsageDescription": "This app uses the camera to scan food barcodes."
+        "NSCameraUsageDescription": "Allow ThyraScan to access your camera to scan food barcodes.",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
+      "package": "com.thyrascan.app",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#EDE9FA",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
