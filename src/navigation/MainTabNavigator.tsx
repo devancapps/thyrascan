@@ -11,7 +11,7 @@ import { colors } from "../styles/theme";
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
-function ScanTabIcon({ color, focused }: { color: string; focused: boolean }) {
+function TabIconWrap({ focused, children }: { focused: boolean; children: React.ReactNode }) {
   return (
     <View
       style={{
@@ -23,12 +23,20 @@ function ScanTabIcon({ color, focused }: { color: string; focused: boolean }) {
         justifyContent: "center",
       }}
     >
+      {children}
+    </View>
+  );
+}
+
+function ScanTabIcon({ color, focused }: { color: string; focused: boolean }) {
+  return (
+    <TabIconWrap focused={focused}>
       <ButterflyLogo
         size={focused ? 22 : 20}
         color={focused ? colors.primary : color}
         accentColor={focused ? colors.coral : color}
       />
-    </View>
+    </TabIconWrap>
   );
 }
 
@@ -71,8 +79,10 @@ export default function MainTabNavigator() {
         name="History"
         component={HistoryScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="time-outline" size={size} color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <TabIconWrap focused={focused}>
+              <Ionicons name="time-outline" size={22} color={focused ? colors.primary : color} />
+            </TabIconWrap>
           ),
         }}
       />
@@ -80,8 +90,10 @@ export default function MainTabNavigator() {
         name="Account"
         component={AccountScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-circle-outline" size={size} color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <TabIconWrap focused={focused}>
+              <Ionicons name="person-circle-outline" size={22} color={focused ? colors.primary : color} />
+            </TabIconWrap>
           ),
         }}
       />

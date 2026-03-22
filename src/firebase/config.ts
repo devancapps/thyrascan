@@ -1,5 +1,5 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { initializeAuth, getAuth, getReactNativePersistence } from "firebase/auth";
+import { initializeAuth, getAuth, Auth, Persistence } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -15,9 +15,15 @@ const firebaseConfig = {
 
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 
+// getReactNativePersistence is resolved at runtime by Metro's react-native
+// module condition — not exposed in the browser TS types, so we use require.
+// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any
+const getReactNativePersistence = (require("firebase/auth") as any)
+  .getReactNativePersistence as (storage: typeof AsyncStorage) => Persistence;
+
 // initializeAuth throws if called a second time (e.g. on hot reload),
 // so fall back to getAuth if it was already initialized.
-let firebaseAuth;
+let firebaseAuth: Auth;
 try {
   firebaseAuth = initializeAuth(app, {
     persistence: getReactNativePersistence(AsyncStorage),

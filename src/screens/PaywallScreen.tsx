@@ -165,6 +165,12 @@ export default function PaywallScreen({ navigation }: Props) {
           <Text style={styles.restoreText}>Restore Purchase</Text>
         </TouchableOpacity>
 
+        <Text style={styles.disclaimerText}>
+          ThyraScan is an educational tool. It is not a medical device and does
+          not provide medical advice. Always consult your healthcare provider
+          about dietary choices related to your condition.
+        </Text>
+
         <Text style={styles.legalText}>
           Subscription automatically renews for $4.99/month unless cancelled at
           least 24 hours before the end of the current period. Manage or cancel
@@ -307,6 +313,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.primary,
     fontWeight: "600",
+  },
+  disclaimerText: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    textAlign: "center",
+    lineHeight: 18,
+    paddingHorizontal: spacing.sm,
   },
   legalText: {
     fontSize: 11,

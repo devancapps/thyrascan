@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: "800",
     letterSpacing: 1,
-    width: 58,
+    width: 72,
   },
   verdictDesc: {
     flex: 1,
