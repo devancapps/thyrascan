@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Verdict } from "../types";
-import { colors, spacing } from "../styles/theme";
+import { colors, spacing, borderRadius } from "../styles/theme";
 
 interface VerdictBadgeProps {
   verdict: Verdict;
@@ -23,44 +23,56 @@ const verdictBackgrounds: Record<Verdict, string> = {
 
 const verdictIcons: Record<Verdict, keyof typeof Ionicons.glyphMap> = {
   [Verdict.SAFE]: "checkmark-circle",
-  [Verdict.REVIEW]: "warning",
+  [Verdict.REVIEW]: "alert-circle",
   [Verdict.AVOID]: "close-circle",
 };
 
-export default function VerdictBadge({
-  verdict,
-  size = "large",
-}: VerdictBadgeProps) {
+const verdictSubtitles: Record<Verdict, string> = {
+  [Verdict.SAFE]: "No flagged ingredients found",
+  [Verdict.REVIEW]: "Worth discussing with your provider",
+  [Verdict.AVOID]: "Contains thyroid-disruptive ingredients",
+};
+
+export default function VerdictBadge({ verdict, size = "large" }: VerdictBadgeProps) {
   const isLarge = size === "large";
+  const color = verdictColors[verdict];
+  const bg = verdictBackgrounds[verdict];
 
   return (
     <View
       style={[
         styles.container,
         {
-          backgroundColor: verdictBackgrounds[verdict],
-          borderColor: verdictColors[verdict],
+          backgroundColor: bg,
+          borderColor: `${color}40`,
           paddingVertical: isLarge ? spacing.lg : spacing.sm,
           paddingHorizontal: isLarge ? spacing.xl : spacing.md,
+          borderRadius: isLarge ? borderRadius.xl : borderRadius.md,
         },
       ]}
     >
       <Ionicons
         name={verdictIcons[verdict]}
-        size={isLarge ? 56 : 24}
-        color={verdictColors[verdict]}
+        size={isLarge ? 52 : 22}
+        color={color}
       />
       <Text
         style={[
           styles.label,
           {
-            color: verdictColors[verdict],
-            fontSize: isLarge ? 32 : 14,
+            color,
+            fontSize: isLarge ? 30 : 13,
+            letterSpacing: isLarge ? 3 : 1,
           },
         ]}
       >
         {verdict}
       </Text>
+      {isLarge && (
+        <Text style={[styles.subtitle, { color }]}>
+          {verdictSubtitles[verdict]}
+        </Text>
+      )}
     </View>
   );
 }
@@ -69,13 +81,18 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 20,
-    borderWidth: 2,
-    gap: 8,
+    borderWidth: 1.5,
+    gap: 6,
   },
   label: {
     fontWeight: "800",
-    letterSpacing: 2,
     textAlign: "center",
+  },
+  subtitle: {
+    fontSize: 13,
+    fontWeight: "500",
+    textAlign: "center",
+    opacity: 0.8,
+    marginTop: 2,
   },
 });

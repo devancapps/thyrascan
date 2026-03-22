@@ -1,13 +1,36 @@
 import React from "react";
+import { View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { MainTabParamList } from "../types";
 import HomeScreen from "../screens/HomeScreen";
 import HistoryScreen from "../screens/HistoryScreen";
 import AccountScreen from "../screens/ProfileScreen";
+import ButterflyLogo from "../components/ButterflyLogo";
 import { colors } from "../styles/theme";
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
+
+function ScanTabIcon({ color, focused }: { color: string; focused: boolean }) {
+  return (
+    <View
+      style={{
+        width: 44,
+        height: 44,
+        borderRadius: 14,
+        backgroundColor: focused ? colors.primaryLight : "transparent",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <ButterflyLogo
+        size={focused ? 22 : 20}
+        color={focused ? colors.primary : color}
+        accentColor={focused ? colors.coral : color}
+      />
+    </View>
+  );
+}
 
 export default function MainTabNavigator() {
   return (
@@ -19,13 +42,19 @@ export default function MainTabNavigator() {
         tabBarStyle: {
           backgroundColor: colors.white,
           borderTopColor: colors.border,
-          paddingBottom: 8,
+          paddingBottom: 10,
           height: 88,
-          paddingTop: 8,
+          paddingTop: 10,
+          shadowColor: colors.primaryDark,
+          shadowOffset: { width: 0, height: -2 },
+          shadowOpacity: 0.05,
+          shadowRadius: 8,
+          elevation: 8,
         },
         tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: "600",
+          fontSize: 11,
+          fontWeight: "700",
+          marginTop: 2,
         },
       }}
     >
@@ -33,8 +62,8 @@ export default function MainTabNavigator() {
         name="Scan"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="scan-outline" size={size} color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <ScanTabIcon color={color} focused={focused} />
           ),
         }}
       />

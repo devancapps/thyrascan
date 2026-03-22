@@ -117,7 +117,7 @@ export default function PaywallScreen({ navigation }: Props) {
       >
         <View style={styles.header}>
           <View style={styles.starContainer}>
-            <Ionicons name="star" size={40} color="#F59E0B" />
+            <Ionicons name="star" size={40} color={colors.gold} />
           </View>
           <Text style={styles.title}>Go Premium</Text>
           <Text style={styles.subtitle}>
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 20,
-    backgroundColor: "#FEF3C7",
+    backgroundColor: "#FEF4DC",
     alignItems: "center",
     justifyContent: "center",
     marginBottom: spacing.sm,

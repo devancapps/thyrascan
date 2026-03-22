@@ -135,7 +135,7 @@ export default function ProfileScreen() {
           {/* Subscription status */}
           <View style={[cardStyle, styles.subscriptionCard]}>
             <View style={styles.subscriptionBadge}>
-              <Ionicons name="star" size={18} color="#F59E0B" />
+              <Ionicons name="star" size={18} color={colors.gold} />
               <Text style={styles.subscriptionBadgeText}>Premium Active</Text>
             </View>
             <Text style={styles.subscriptionDetail}>
@@ -221,7 +221,7 @@ export default function ProfileScreen() {
         {/* Upgrade card */}
         <View style={styles.upgradeCard}>
           <View style={styles.starContainer}>
-            <Ionicons name="star" size={36} color="#F59E0B" />
+            <Ionicons name="star" size={36} color={colors.gold} />
           </View>
           <Text style={styles.upgradeTitle}>Upgrade to Premium</Text>
           <Text style={styles.upgradeSubtitle}>
@@ -382,7 +382,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   actionIconDanger: {
-    backgroundColor: "#FEF2F2",
+    backgroundColor: colors.verdictAvoidBg,
   },
   actionText: {
     flex: 1,
@@ -461,7 +461,7 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: 16,
-    backgroundColor: "#FEF3C7",
+    backgroundColor: "#FEF4DC",
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",

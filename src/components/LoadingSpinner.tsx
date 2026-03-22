@@ -14,7 +14,7 @@ export default function LoadingSpinner({
   return (
     <View style={[styles.container, fullScreen && styles.fullScreen]}>
       <ActivityIndicator size="large" color={colors.primary} />
-      {message && <Text style={styles.text}>{message}</Text>}
+      {message ? <Text style={styles.text}>{message}</Text> : null}
     </View>
   );
 }
@@ -31,8 +31,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   text: {
-    fontSize: 16,
+    fontSize: 15,
     color: colors.textSecondary,
     textAlign: "center",
+    fontWeight: "500",
   },
 });

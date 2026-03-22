@@ -10,8 +10,9 @@ import { useSubscription } from "../hooks/useSubscription";
 import { useUserProfile } from "../hooks/useUserProfile";
 import { useScanLimit } from "../hooks/useScanLimit";
 import ScanButton from "../components/ScanButton";
+import ButterflyLogo from "../components/ButterflyLogo";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { colors, spacing } from "../styles/theme";
+import { colors, spacing, borderRadius } from "../styles/theme";
 import { FREE_SCAN_LIMIT } from "../logic/scanLimiter";
 
 export default function HomeScreen() {
@@ -27,8 +28,6 @@ export default function HomeScreen() {
   );
   const isInitialFocus = useRef(true);
 
-  // Skip refresh on first focus: subscription was just loaded by the gate.
-  // Refreshing here would set loading=true and re-close the gate (flash to loader).
   useFocusEffect(
     useCallback(() => {
       if (isInitialFocus.current) {
@@ -47,6 +46,13 @@ export default function HomeScreen() {
     navigation.navigate("Scanner");
   }
 
+  function conditionLabel() {
+    if (condition === "hashimotos") return "Hashimoto's";
+    if (condition === "hypothyroidism") return "Hypothyroidism";
+    if (condition === "exploring") return "Just Exploring";
+    return null;
+  }
+
   if (subscriptionLoading) {
     return <LoadingSpinner fullScreen message="Loading..." />;
   }
@@ -54,9 +60,10 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
+        {/* Header */}
         <View style={styles.header}>
-          <View style={styles.iconContainer}>
-            <Ionicons name="shield-checkmark" size={40} color={colors.primary} />
+          <View style={styles.logoWrap}>
+            <ButterflyLogo size={44} />
           </View>
           <Text style={styles.title}>ThyraScan</Text>
           <Text style={styles.subtitle}>
@@ -64,26 +71,21 @@ export default function HomeScreen() {
           </Text>
           {condition && (
             <View style={styles.conditionBadge}>
-              <Ionicons name="person-circle-outline" size={14} color={colors.primary} />
-              <Text style={styles.conditionText}>
-                {condition === "hashimotos"
-                  ? "Hashimoto's"
-                  : condition === "hypothyroidism"
-                  ? "Hypothyroidism"
-                  : "Exploring"}
-              </Text>
+              <Ionicons name="leaf-outline" size={13} color={colors.primary} />
+              <Text style={styles.conditionText}>{conditionLabel()}</Text>
             </View>
           )}
         </View>
 
+        {/* Scan section */}
         <View style={styles.scanSection}>
           <ScanButton onPress={handleScan} atLimit={!scanLimitLoading && !canScan} />
 
           {!isPremium && (
             <View style={styles.limitInfo}>
               <Ionicons
-                name="information-circle-outline"
-                size={18}
+                name="time-outline"
+                size={16}
                 color={colors.textSecondary}
               />
               <Text style={styles.limitText}>
@@ -94,8 +96,8 @@ export default function HomeScreen() {
 
           {isPremium && (
             <View style={styles.premiumBadge}>
-              <Ionicons name="star" size={16} color="#F59E0B" />
-              <Text style={styles.premiumText}>Premium • Unlimited Scans</Text>
+              <Ionicons name="star" size={15} color={colors.gold} />
+              <Text style={styles.premiumText}>Premium · Unlimited Scans</Text>
             </View>
           )}
         </View>
@@ -119,40 +121,42 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: spacing.sm,
   },
-  iconContainer: {
-    width: 80,
-    height: 80,
-    borderRadius: 20,
+  logoWrap: {
+    width: 84,
+    height: 84,
+    borderRadius: 26,
     backgroundColor: colors.primaryLight,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: spacing.sm,
-  },
-  conditionBadge: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    backgroundColor: colors.primaryLight,
-    borderRadius: 20,
-    marginTop: spacing.xs,
-  },
-  conditionText: {
-    fontSize: 13,
-    color: colors.primary,
-    fontWeight: "600",
+    marginBottom: spacing.xs,
   },
   title: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: "800",
     color: colors.textPrimary,
+    letterSpacing: -0.5,
   },
   subtitle: {
     fontSize: 16,
     color: colors.textSecondary,
     textAlign: "center",
     lineHeight: 24,
+    fontWeight: "500",
+  },
+  conditionBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    backgroundColor: colors.primaryLight,
+    borderRadius: borderRadius.pill,
+    marginTop: spacing.xs,
+  },
+  conditionText: {
+    fontSize: 13,
+    color: colors.primary,
+    fontWeight: "700",
   },
   scanSection: {
     gap: spacing.md,
@@ -164,8 +168,9 @@ const styles = StyleSheet.create({
     gap: spacing.xs,
   },
   limitText: {
-    fontSize: 14,
+    fontSize: 13,
     color: colors.textSecondary,
+    fontWeight: "500",
   },
   premiumBadge: {
     flexDirection: "row",
@@ -174,8 +179,8 @@ const styles = StyleSheet.create({
     gap: spacing.xs,
   },
   premiumText: {
-    fontSize: 14,
-    color: "#F59E0B",
-    fontWeight: "600",
+    fontSize: 13,
+    color: colors.gold,
+    fontWeight: "700",
   },
 });

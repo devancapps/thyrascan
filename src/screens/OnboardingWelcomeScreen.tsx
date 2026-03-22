@@ -4,22 +4,23 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types";
-import { colors, spacing, buttonStyle, buttonTextStyle } from "../styles/theme";
+import ButterflyLogo from "../components/ButterflyLogo";
+import { colors, spacing, borderRadius, buttonStyle, buttonTextStyle } from "../styles/theme";
 
 type Props = NativeStackScreenProps<RootStackParamList, "OnboardingWelcome">;
 
 const FEATURES = [
-  "Scan food barcodes in seconds",
-  "Detect thyroid-related ingredients",
-  "Get clear SAFE / REVIEW / AVOID results",
+  { icon: "scan-outline" as const, text: "Scan food barcodes in seconds" },
+  { icon: "leaf-outline" as const, text: "Detect thyroid-related ingredients" },
+  { icon: "shield-checkmark-outline" as const, text: "Get clear SAFE / REVIEW / AVOID results" },
 ];
 
 export default function OnboardingWelcomeScreen({ navigation }: Props) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <View style={styles.iconContainer}>
-          <Ionicons name="shield-checkmark" size={56} color={colors.primary} />
+        <View style={styles.logoWrap}>
+          <ButterflyLogo size={52} />
         </View>
 
         <Text style={styles.appName}>THYRASCAN</Text>
@@ -28,15 +29,17 @@ export default function OnboardingWelcomeScreen({ navigation }: Props) {
         </Text>
 
         <Text style={styles.description}>
-          A label scanner for people managing Hashimoto's
+          A label scanner designed for people managing Hashimoto's
           and hypothyroid conditions.
         </Text>
 
         <View style={styles.features}>
           {FEATURES.map((feature, i) => (
             <View key={i} style={styles.featureRow}>
-              <Ionicons name="checkmark-circle" size={22} color={colors.primary} />
-              <Text style={styles.featureText}>{feature}</Text>
+              <View style={styles.featureIconWrap}>
+                <Ionicons name={feature.icon} size={18} color={colors.primary} />
+              </View>
+              <Text style={styles.featureText}>{feature.text}</Text>
             </View>
           ))}
         </View>
@@ -50,6 +53,9 @@ export default function OnboardingWelcomeScreen({ navigation }: Props) {
         >
           <Text style={buttonTextStyle}>Get Started</Text>
         </TouchableOpacity>
+        <Text style={styles.disclaimer}>
+          Free to use · Educational purposes only
+        </Text>
       </View>
     </SafeAreaView>
   );
@@ -65,23 +71,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: spacing.xl,
+    gap: spacing.md,
   },
-  iconContainer: {
-    width: 112,
-    height: 112,
+  logoWrap: {
+    width: 100,
+    height: 100,
     borderRadius: 28,
     backgroundColor: colors.primaryLight,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: spacing.lg,
+    marginBottom: spacing.sm,
   },
   appName: {
-    fontSize: 13,
-    fontWeight: "700",
+    fontSize: 12,
+    fontWeight: "800",
     color: colors.primary,
-    letterSpacing: 2,
+    letterSpacing: 3,
     textTransform: "uppercase",
-    marginBottom: spacing.sm,
   },
   headline: {
     fontSize: 30,
@@ -89,32 +95,53 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     textAlign: "center",
     lineHeight: 38,
-    marginBottom: spacing.md,
+    letterSpacing: -0.5,
   },
   description: {
     fontSize: 16,
     color: colors.textSecondary,
     textAlign: "center",
-    lineHeight: 24,
-    marginBottom: spacing.xl,
+    lineHeight: 26,
+    fontWeight: "500",
     paddingHorizontal: spacing.md,
   },
   features: {
     alignSelf: "stretch",
-    gap: spacing.md,
+    gap: spacing.sm,
+    marginTop: spacing.sm,
   },
   featureRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: spacing.sm,
+    gap: spacing.md,
+    backgroundColor: colors.secondaryBackground,
+    borderRadius: borderRadius.md,
+    padding: spacing.md,
+  },
+  featureIconWrap: {
+    width: 36,
+    height: 36,
+    borderRadius: borderRadius.sm,
+    backgroundColor: colors.primaryLight,
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
   },
   featureText: {
-    fontSize: 16,
+    fontSize: 15,
     color: colors.textPrimary,
-    fontWeight: "500",
+    fontWeight: "600",
+    flex: 1,
   },
   footer: {
     paddingHorizontal: spacing.xl,
     paddingBottom: spacing.xl,
+    gap: spacing.md,
+    alignItems: "center",
+  },
+  disclaimer: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    fontWeight: "500",
   },
 });

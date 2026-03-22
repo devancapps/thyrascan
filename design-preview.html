@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ThyraScan — Brand Identity Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amethyst: #7B5EA7;
+    --amethyst-dark: #5B3F8A;
+    --amethyst-light: #F0EBF8;
+    --coral: #E07A5F;
+    --coral-dark: #C8623E;
+    --gold: #D4A043;
+    --cream: #FDFBF7;
+    --surface: #F6F2EE;
+    --plum: #2D1F3D;
+    --plum-light: #4A3560;
+    --lavender-text: #8B7BA8;
+    --sage: #52A788;
+    --sage-bg: #E8F5EF;
+    --amber: #C9864A;
+    --amber-bg: #FDF0E6;
+    --terra: #C4604A;
+    --terra-bg: #FAEAE6;
+    --border: #EAE4F0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--plum);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: linear-gradient(135deg, var(--amethyst-dark) 0%, var(--amethyst) 50%, #9B7BC4 100%);
+    padding: 64px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .site-header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 10%;
+    width: 240px; height: 240px;
+    background: radial-gradient(circle, rgba(224,122,95,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .header-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 3px;
+    color: rgba(255,255,255,0.6); text-transform: uppercase; margin-bottom: 16px;
+  }
+  .header-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 16px;
+  }
+  .header-subtitle {
+    font-size: 18px; color: rgba(255,255,255,0.75); max-width: 520px;
+  }
+  .header-tag {
+    display: inline-block; margin-top: 24px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9); border-radius: 100px;
+    padding: 6px 16px; font-size: 13px; font-weight: 600;
+  }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 1100px; margin: 0 auto; padding: 0 32px 80px; }
+
+  .section {
+    margin-top: 72px;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 800; letter-spacing: 3px;
+    color: var(--amethyst); text-transform: uppercase; margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: 28px; font-weight: 700; color: var(--plum); margin-bottom: 8px;
+  }
+  .section-desc {
+    font-size: 15px; color: var(--lavender-text); margin-bottom: 40px; max-width: 560px;
+  }
+
+  /* ── LOGO SECTION ── */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .logo-card {
+    border-radius: 20px;
+    padding: 40px 24px;
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+    border: 1px solid var(--border);
+  }
+  .logo-card.light { background: var(--cream); }
+  .logo-card.surface { background: var(--surface); }
+  .logo-card.dark {
+    background: linear-gradient(135deg, var(--amethyst-dark), var(--amethyst));
+    border-color: transparent;
+  }
+  .logo-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 1px;
+    color: var(--lavender-text); text-transform: uppercase;
+  }
+  .logo-card.dark .logo-label { color: rgba(255,255,255,0.5); }
+  .logo-wordmark {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900; letter-spacing: -0.5px;
+    color: var(--amethyst);
+  }
+  .logo-card.dark .logo-wordmark { color: #fff; }
+
+  /* ── BUTTERFLY SVG ── */
+  .butterfly { display: block; }
+
+  /* ── PHONE FRAME ── */
+  .phone-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .phone-wrap { display: flex; justify-content: center; }
+  .phone-frame {
+    width: 260px;
+    background: #1A1A1A;
+    border-radius: 44px;
+    padding: 12px;
+    box-shadow:
+      0 0 0 1px #333,
+      0 40px 80px rgba(45,31,61,0.35),
+      0 20px 40px rgba(45,31,61,0.2);
+    position: relative;
+  }
+  .phone-notch {
+    position: absolute;
+    top: 12px; left: 50%;
+    transform: translateX(-50%);
+    width: 90px; height: 28px;
+    background: #1A1A1A;
+    border-radius: 0 0 16px 16px;
+    z-index: 10;
+  }
+  .phone-screen {
+    border-radius: 34px;
+    overflow: hidden;
+    height: 520px;
+    position: relative;
+  }
+
+  /* SPLASH SCREEN */
+  .splash-screen {
+    width: 100%; height: 100%;
+    background: linear-gradient(160deg, #7B5EA7 0%, #5B3F8A 60%, #3D2A62 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .splash-screen::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(155,123,196,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .splash-screen::after {
+    content: '';
+    position: absolute;
+    bottom: 60px; left: -30px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(224,122,95,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .splash-logo-wrap {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 20px; position: relative; z-index: 1;
+  }
+  .splash-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 28px; font-weight: 900;
+    color: #fff; letter-spacing: -0.5px;
+  }
+  .splash-tagline {
+    font-size: 13px; font-weight: 500;
+    color: rgba(240,235,248,0.7);
+    letter-spacing: 0.3px;
+  }
+  .splash-dots {
+    display: flex; gap: 6px; margin-top: 40px;
+  }
+  .splash-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+  }
+  .splash-dot.active { background: rgba(255,255,255,0.9); width: 20px; border-radius: 3px; }
+
+  /* HOME SCREEN */
+  .home-screen {
+    width: 100%; height: 100%;
+    background: var(--cream);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .home-top {
+    flex: 1;
+    display: flex; flex-direction: column;
+    align-items: center;
+    padding: 56px 20px 20px;
+    gap: 12px;
+  }
+  .home-greeting {
+    font-size: 11px; font-weight: 700;
+    color: var(--lavender-text); letter-spacing: 1px;
+    text-transform: uppercase; align-self: flex-start;
+  }
+  .home-name {
+    font-size: 18px; font-weight: 800;
+    color: var(--plum); align-self: flex-start; margin-top: -4px;
+  }
+  .home-logo-wrap {
+    margin-top: 20px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .home-logo-bg {
+    width: 72px; height: 72px;
+    background: var(--amethyst-light);
+    border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .home-app-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px; font-weight: 900;
+    color: var(--plum);
+  }
+  .home-condition-badge {
+    background: var(--amethyst-light);
+    color: var(--amethyst);
+    font-size: 11px; font-weight: 700;
+    padding: 4px 12px; border-radius: 100px;
+    letter-spacing: 0.3px;
+  }
+  .home-subtitle {
+    font-size: 11px; color: var(--lavender-text);
+    text-align: center; line-height: 1.5;
+    padding: 0 8px;
+  }
+  .home-scan-btn {
+    margin-top: 16px;
+    background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%);
+    border-radius: 18px;
+    padding: 16px 32px;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 8px 24px rgba(224,122,95,0.4);
+    width: 100%;
+    justify-content: center;
+  }
+  .home-scan-text {
+    font-size: 15px; font-weight: 800;
+    color: #fff; letter-spacing: 0.3px;
+  }
+  .scan-limit {
+    font-size: 10px; color: var(--lavender-text);
+    margin-top: 8px;
+  }
+  .home-tab-bar {
+    height: 72px;
+    background: #fff;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-around;
+    padding: 0 16px 8px;
+  }
+  .tab-item {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    flex: 1;
+  }
+  .tab-icon { font-size: 20px; }
+  .tab-label { font-size: 9px; font-weight: 700; }
+  .tab-item.active .tab-label { color: var(--amethyst); }
+  .tab-item.active .tab-icon { filter: none; }
+  .tab-item:not(.active) .tab-label { color: var(--lavender-text); }
+
+  /* Phone info section */
+  .phone-info { padding-top: 8px; }
+  .phone-info h3 {
+    font-family: 'Lora', serif;
+    font-size: 20px; font-weight: 700; color: var(--plum); margin-bottom: 12px;
+  }
+  .phone-info p { font-size: 14px; color: var(--lavender-text); line-height: 1.7; margin-bottom: 16px; }
+  .spec-list { display: flex; flex-direction: column; gap: 8px; }
+  .spec-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; color: var(--plum);
+  }
+  .spec-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--coral); margin-top: 5px; flex-shrink: 0;
+  }
+
+  /* ── COLOR PALETTE ── */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+  .swatch {
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(45,31,61,0.06);
+  }
+  .swatch-color { height: 80px; }
+  .swatch-info { padding: 12px 14px; background: #fff; }
+  .swatch-name { font-size: 12px; font-weight: 700; color: var(--plum); }
+  .swatch-hex { font-size: 11px; color: var(--lavender-text); margin-top: 2px; font-family: monospace; }
+  .swatch-role { font-size: 10px; color: var(--amethyst); margin-top: 4px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  /* ── TYPOGRAPHY ── */
+  .type-showcase {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 48px;
+    display: flex; flex-direction: column; gap: 32px;
+  }
+  .type-row { display: flex; gap: 24px; align-items: baseline; }
+  .type-meta { width: 140px; flex-shrink: 0; }
+  .type-meta-label { font-size: 11px; font-weight: 700; color: var(--coral); letter-spacing: 1px; text-transform: uppercase; }
+  .type-meta-spec { font-size: 11px; color: var(--lavender-text); margin-top: 4px; line-height: 1.5; }
+  .type-divider { height: 1px; background: var(--border); }
+
+  /* ── COMPONENTS ── */
+  .components-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .comp-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+  }
+  .comp-title {
+    font-size: 12px; font-weight: 700; letter-spacing: 1px;
+    color: var(--lavender-text); text-transform: uppercase; margin-bottom: 24px;
+  }
+  .comp-content { display: flex; flex-direction: column; gap: 16px; }
+
+  /* Buttons */
+  .btn-primary {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    height: 56px; border-radius: 100px;
+    background: linear-gradient(135deg, #E07A5F 0%, #C8623E 100%);
+    color: #fff; font-size: 16px; font-weight: 800;
+    box-shadow: 0 8px 24px rgba(224,122,95,0.35);
+    border: none; cursor: pointer;
+  }
+  .btn-secondary {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    height: 56px; border-radius: 100px;
+    background: transparent;
+    color: var(--amethyst); font-size: 16px; font-weight: 700;
+    border: 2px solid var(--amethyst);
+    cursor: pointer;
+  }
+  .btn-scan {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    height: 64px; border-radius: 20px;
+    background: linear-gradient(135deg, #E07A5F 0%, #C8623E 100%);
+    color: #fff; font-size: 18px; font-weight: 800;
+    box-shadow: 0 12px 32px rgba(224,122,95,0.4);
+    border: none; cursor: pointer; letter-spacing: 0.3px;
+  }
+
+  /* Verdict badges */
+  .badges { display: flex; gap: 12px; flex-wrap: wrap; }
+  .badge {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 16px; border-radius: 12px;
+    font-size: 14px; font-weight: 700;
+    border: 1.5px solid;
+  }
+  .badge-safe { background: var(--sage-bg); color: var(--sage); border-color: rgba(82,167,136,0.3); }
+  .badge-review { background: var(--amber-bg); color: var(--amber); border-color: rgba(201,134,74,0.3); }
+  .badge-avoid { background: var(--terra-bg); color: var(--terra); border-color: rgba(196,96,74,0.3); }
+  .badge-icon { font-size: 18px; }
+
+  /* Product card */
+  .product-card-demo {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex; align-items: center; gap: 14px;
+    border: 1px solid var(--border);
+  }
+  .product-icon-wrap {
+    width: 48px; height: 48px;
+    background: var(--amethyst-light);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .product-info { flex: 1; }
+  .product-name-demo { font-size: 15px; font-weight: 700; color: var(--plum); }
+  .product-meta { font-size: 12px; color: var(--lavender-text); margin-top: 2px; }
+  .product-badge-demo {
+    background: var(--sage-bg); color: var(--sage);
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px; border-radius: 8px;
+    border: 1px solid rgba(82,167,136,0.3);
+  }
+
+  /* ── BEFORE/AFTER ── */
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .ba-card {
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .ba-header {
+    padding: 20px 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .ba-header.before { background: #5A3D9B; }
+  .ba-header.after { background: linear-gradient(135deg, var(--amethyst), var(--amethyst-dark)); }
+  .ba-tag {
+    font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 100px; color: #fff;
+  }
+  .ba-tag.before { background: rgba(255,255,255,0.15); }
+  .ba-tag.after { background: rgba(255,255,255,0.2); }
+  .ba-title-text { font-size: 16px; font-weight: 700; color: #fff; }
+  .ba-body { padding: 24px; background: #fff; }
+  .ba-row { display: flex; flex-direction: column; gap: 12px; }
+  .ba-item { display: flex; align-items: center; gap: 12px; }
+  .ba-swatch { width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.08); }
+  .ba-item-text { font-size: 13px; }
+  .ba-item-name { font-weight: 700; color: var(--plum); }
+  .ba-item-hex { color: var(--lavender-text); font-family: monospace; font-size: 12px; }
+  .ba-divider { height: 1px; background: var(--border); margin: 8px 0; }
+  .ba-note {
+    font-size: 12px; color: var(--lavender-text); line-height: 1.6; margin-top: 12px;
+    padding: 12px; background: var(--surface); border-radius: 10px;
+  }
+
+  /* ── FOOTER ── */
+  .preview-footer {
+    background: var(--plum);
+    margin-top: 80px;
+    padding: 40px 48px;
+    text-align: center;
+  }
+  .footer-title {
+    font-family: 'Lora', serif;
+    font-size: 22px; color: #fff; margin-bottom: 8px;
+  }
+  .footer-sub { font-size: 14px; color: rgba(255,255,255,0.5); }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .section { animation: fadeUp 0.5s ease both; }
+  .section:nth-child(2) { animation-delay: 0.1s; }
+  .section:nth-child(3) { animation-delay: 0.2s; }
+  .section:nth-child(4) { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="site-header">
+  <div class="header-inner">
+    <div class="header-label">Brand Identity Preview · 2026</div>
+    <h1 class="header-title">ThyraScan<br>Warm & Friendly<br>Visual Identity</h1>
+    <p class="header-subtitle">A redesign centered around warmth, trust, and calm clarity — for people managing their thyroid health every day.</p>
+    <span class="header-tag">Direction: Warm Wellness</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ── SECTION 1: LOGO ── -->
+  <div class="section">
+    <div class="section-label">01 — Logo</div>
+    <h2 class="section-title">The ThyraScan Mark</h2>
+    <p class="section-desc">A butterfly shape — the thyroid gland's natural form — rendered with rounded, organic curves. Friendly, not medical. Warm, not clinical.</p>
+
+    <div class="logo-grid">
+      <!-- Light background, large -->
+      <div class="logo-card light">
+        <svg class="butterfly" width="80" height="60" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Left wing top -->
+          <path d="M38 28 C38 28 20 8 6 12 C0 14 2 24 8 28 C14 32 28 30 38 28Z" fill="#7B5EA7" opacity="0.9"/>
+          <!-- Left wing bottom -->
+          <path d="M38 32 C38 32 16 36 10 46 C7 51 14 56 20 52 C28 47 36 38 38 32Z" fill="#7B5EA7" opacity="0.7"/>
+          <!-- Right wing top -->
+          <path d="M42 28 C42 28 60 8 74 12 C80 14 78 24 72 28 C66 32 52 30 42 28Z" fill="#7B5EA7" opacity="0.9"/>
+          <!-- Right wing bottom -->
+          <path d="M42 32 C42 32 64 36 70 46 C73 51 66 56 60 52 C52 47 44 38 42 32Z" fill="#7B5EA7" opacity="0.7"/>
+          <!-- Body -->
+          <ellipse cx="40" cy="30" rx="4" ry="12" fill="#5B3F8A"/>
+          <!-- Antennae -->
+          <path d="M38 19 C36 14 30 10 28 8" stroke="#7B5EA7" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+          <path d="M42 19 C44 14 50 10 52 8" stroke="#7B5EA7" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+          <circle cx="28" cy="8" r="2" fill="#E07A5F"/>
+          <circle cx="52" cy="8" r="2" fill="#E07A5F"/>
+        </svg>
+        <div class="logo-wordmark" style="font-size: 22px;">ThyraScan</div>
+        <div class="logo-label">On Light · Large</div>
+      </div>
+
+      <!-- Surface background, medium -->
+      <div class="logo-card surface">
+        <svg class="butterfly" width="56" height="42" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M38 28 C38 28 20 8 6 12 C0 14 2 24 8 28 C14 32 28 30 38 28Z" fill="#7B5EA7" opacity="0.9"/>
+          <path d="M38 32 C38 32 16 36 10 46 C7 51 14 56 20 52 C28 47 36 38 38 32Z" fill="#7B5EA7" opacity="0.7"/>
+          <path d="M42 28 C42 28 60 8 74 12 C80 14 78 24 72 28 C66 32 52 30 42 28Z" fill="#7B5EA7" opacity="0.9"/>
+          <path d="M42 32 C42 32 64 36 70 46 C73 51 66 56 60 52 C52 47 44 38 42 32Z" fill="#7B5EA7" opacity="0.7"/>
+          <ellipse cx="40" cy="30" rx="4" ry="12" fill="#5B3F8A"/>
+          <path d="M38 19 C36 14 30 10 28 8" stroke="#7B5EA7" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+          <path d="M42 19 C44 14 50 10 52 8" stroke="#7B5EA7" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+          <circle cx="28" cy="8" r="2" fill="#E07A5F"/>
+          <circle cx="52" cy="8" r="2" fill="#E07A5F"/>
+        </svg>
+        <div class="logo-wordmark" style="font-size: 18px;">ThyraScan</div>
+        <div class="logo-label">On Surface · Medium</div>
+      </div>
+
+      <!-- Dark background -->
+      <div class="logo-card dark">
+        <svg class="butterfly" width="64" height="48" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M38 28 C38 28 20 8 6 12 C0 14 2 24 8 28 C14 32 28 30 38 28Z" fill="white" opacity="0.95"/>
+          <path d="M38 32 C38 32 16 36 10 46 C7 51 14 56 20 52 C28 47 36 38 38 32Z" fill="white" opacity="0.75"/>
+          <path d="M42 28 C42 28 60 8 74 12 C80 14 78 24 72 28 C66 32 52 30 42 28Z" fill="white" opacity="0.95"/>
+          <path d="M42 32 C42 32 64 36 70 46 C73 51 66 56 60 52 C52 47 44 38 42 32Z" fill="white" opacity="0.75"/>
+          <ellipse cx="40" cy="30" rx="4" ry="12" fill="rgba(255,255,255,0.6)"/>
+          <path d="M38 19 C36 14 30 10 28 8" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          <path d="M42 19 C44 14 50 10 52 8" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          <circle cx="28" cy="8" r="2" fill="#E07A5F"/>
+          <circle cx="52" cy="8" r="2" fill="#E07A5F"/>
+        </svg>
+        <div class="logo-wordmark" style="font-size: 20px;">ThyraScan</div>
+        <div class="logo-label">On Dark · Reversed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2: SCREENS ── -->
+  <div class="section">
+    <div class="section-label">02 — Screens</div>
+    <h2 class="section-title">App Screen Mockups</h2>
+    <p class="section-desc">Splash screen sets the emotional tone — warm gradient, white logo, centered calm. Home screen is inviting and personal.</p>
+
+    <div class="phone-section">
+      <!-- Splash -->
+      <div>
+        <div class="phone-wrap">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="splash-screen">
+                <div class="splash-logo-wrap">
+                  <svg width="72" height="54" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M38 28 C38 28 20 8 6 12 C0 14 2 24 8 28 C14 32 28 30 38 28Z" fill="white" opacity="0.95"/>
+                    <path d="M38 32 C38 32 16 36 10 46 C7 51 14 56 20 52 C28 47 36 38 38 32Z" fill="white" opacity="0.75"/>
+                    <path d="M42 28 C42 28 60 8 74 12 C80 14 78 24 72 28 C66 32 52 30 42 28Z" fill="white" opacity="0.95"/>
+                    <path d="M42 32 C42 32 64 36 70 46 C73 51 66 56 60 52 C52 47 44 38 42 32Z" fill="white" opacity="0.75"/>
+                    <ellipse cx="40" cy="30" rx="4" ry="12" fill="rgba(255,255,255,0.6)"/>
+                    <circle cx="28" cy="8" r="2" fill="#E07A5F"/>
+                    <circle cx="52" cy="8" r="2" fill="#E07A5F"/>
+                    <path d="M38 19 C36 14 30 10 28 8" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                    <path d="M42 19 C44 14 50 10 52 8" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                  </svg>
+                  <div class="splash-title">ThyraScan</div>
+                  <div class="splash-tagline">Know what's in your food.</div>
+                  <div class="splash-dots">
+                    <div class="splash-dot active"></div>
+                    <div class="splash-dot"></div>
+                    <div class="splash-dot"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top: 20px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--plum);">Splash Screen</div>
+          <div style="font-size: 12px; color: var(--lavender-text);">Warm gradient · White mark · Centered</div>
+        </div>
+      </div>
+
+      <!-- Home -->
+      <div>
+        <div class="phone-wrap">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="home-screen">
+                <div class="home-top">
+                  <div style="width: 100%;">
+                    <div class="home-greeting">Good morning</div>
+                    <div class="home-name">Devan 👋</div>
+                  </div>
+                  <div class="home-logo-wrap">
+                    <div class="home-logo-bg">
+                      <svg width="40" height="30" viewBox="0 0 80 60" fill="none">
+                        <path d="M38 28 C38 28 20 8 6 12 C0 14 2 24 8 28 C14 32 28 30 38 28Z" fill="#7B5EA7" opacity="0.9"/>
+                        <path d="M38 32 C38 32 16 36 10 46 C7 51 14 56 20 52 C28 47 36 38 38 32Z" fill="#7B5EA7" opacity="0.7"/>
+                        <path d="M42 28 C42 28 60 8 74 12 C80 14 78 24 72 28 C66 32 52 30 42 28Z" fill="#7B5EA7" opacity="0.9"/>
+                        <path d="M42 32 C42 32 64 36 70 46 C73 51 66 56 60 52 C52 47 44 38 42 32Z" fill="#7B5EA7" opacity="0.7"/>
+                        <ellipse cx="40" cy="30" rx="4" ry="12" fill="#5B3F8A"/>
+                        <circle cx="28" cy="8" r="2" fill="#E07A5F"/>
+                        <circle cx="52" cy="8" r="2" fill="#E07A5F"/>
+                      </svg>
+                    </div>
+                    <div class="home-app-title">ThyraScan</div>
+                    <div class="home-condition-badge">Hashimoto's</div>
+                  </div>
+                  <div class="home-subtitle">Scan a barcode to check for thyroid-related ingredients</div>
+                  <div class="home-scan-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/>
+                      <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/>
+                      <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/>
+                      <path d="M14 14h2v2h-2zM18 14h3M14 18v3M18 18h3v3h-3z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <div class="home-scan-text">Scan Food</div>
+                  </div>
+                  <div class="scan-limit">4 of 5 free scans remaining today</div>
+                </div>
+                <div class="home-tab-bar">
+                  <div class="tab-item active">
+                    <div class="tab-icon">🦋</div>
+                    <div class="tab-label" style="color: var(--amethyst);">Scan</div>
+                  </div>
+                  <div class="tab-item">
+                    <div class="tab-icon" style="opacity:0.4;">🕐</div>
+                    <div class="tab-label">History</div>
+                  </div>
+                  <div class="tab-item">
+                    <div class="tab-icon" style="opacity:0.4;">👤</div>
+                    <div class="tab-label">Account</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top: 20px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--plum);">Home Screen</div>
+          <div style="font-size: 12px; color: var(--lavender-text);">Warm cream · Personalized greeting · Coral CTA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3: COLOR PALETTE ── -->
+  <div class="section">
+    <div class="section-label">03 — Color</div>
+    <h2 class="section-title">Warm Wellness Palette</h2>
+    <p class="section-desc">Shifted away from cold blue-purple toward warm amethyst and coral. Backgrounds move from sterile white to warm cream.</p>
+
+    <div class="palette-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #7B5EA7;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Warm Amethyst</div>
+          <div class="swatch-hex">#7B5EA7</div>
+          <div class="swatch-role">Primary Brand</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #5B3F8A;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Deep Amethyst</div>
+          <div class="swatch-hex">#5B3F8A</div>
+          <div class="swatch-role">Gradient Dark</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #F0EBF8;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Lavender Blush</div>
+          <div class="swatch-hex">#F0EBF8</div>
+          <div class="swatch-role">Primary Light</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #E07A5F;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Warm Coral</div>
+          <div class="swatch-hex">#E07A5F</div>
+          <div class="swatch-role">CTA / Accent</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #D4A043;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Honey Gold</div>
+          <div class="swatch-hex">#D4A043</div>
+          <div class="swatch-role">Premium</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #FDFBF7;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Warm Cream</div>
+          <div class="swatch-hex">#FDFBF7</div>
+          <div class="swatch-role">App Background</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #F6F2EE;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Warm Surface</div>
+          <div class="swatch-hex">#F6F2EE</div>
+          <div class="swatch-role">Cards / Inputs</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #2D1F3D;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Deep Plum</div>
+          <div class="swatch-hex">#2D1F3D</div>
+          <div class="swatch-role">Primary Text</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #8B7BA8;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Muted Lavender</div>
+          <div class="swatch-hex">#8B7BA8</div>
+          <div class="swatch-role">Secondary Text</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #52A788;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Sage Green</div>
+          <div class="swatch-hex">#52A788</div>
+          <div class="swatch-role">SAFE Verdict</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #C9864A;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Warm Amber</div>
+          <div class="swatch-hex">#C9864A</div>
+          <div class="swatch-role">REVIEW Verdict</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #C4604A;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Terra Cotta</div>
+          <div class="swatch-hex">#C4604A</div>
+          <div class="swatch-role">AVOID Verdict</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4: TYPOGRAPHY ── -->
+  <div class="section">
+    <div class="section-label">04 — Typography</div>
+    <h2 class="section-title">Type System</h2>
+    <p class="section-desc">Nunito for UI — rounded, warm, approachable. Lora for editorial moments — trustworthy, human, not clinical.</p>
+
+    <div class="type-showcase">
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta-label">Display</div>
+          <div class="type-meta-spec">Nunito · 32px · 900 weight</div>
+        </div>
+        <div style="font-family: 'Nunito', sans-serif; font-size: 32px; font-weight: 900; color: var(--plum); line-height: 1.2;">Know what's in your food.</div>
+      </div>
+      <div class="type-divider"></div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta-label">Heading</div>
+          <div class="type-meta-spec">Lora · 22px · 700 weight</div>
+        </div>
+        <div style="font-family: 'Lora', serif; font-size: 22px; font-weight: 700; color: var(--plum);">Scan Results</div>
+      </div>
+      <div class="type-divider"></div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta-label">Body</div>
+          <div class="type-meta-spec">Nunito · 16px · 400 weight · 1.7 line height</div>
+        </div>
+        <div style="font-size: 16px; color: var(--plum); line-height: 1.7; max-width: 480px;">Kelp has been linked to elevated iodine levels, which some research suggests may affect thyroid function in people with Hashimoto's. Discuss with your healthcare provider before making dietary changes.</div>
+      </div>
+      <div class="type-divider"></div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-meta-label">Caption</div>
+          <div class="type-meta-spec">Nunito · 13px · 500 weight</div>
+        </div>
+        <div style="font-size: 13px; color: var(--lavender-text); font-weight: 500;">For educational purposes only. Always consult your healthcare provider.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5: COMPONENTS ── -->
+  <div class="section">
+    <div class="section-label">05 — Components</div>
+    <h2 class="section-title">Key UI Components</h2>
+    <p class="section-desc">Coral replaces purple as the action color — warm, inviting, and distinct from the brand amethyst.</p>
+
+    <div class="components-grid">
+      <!-- Buttons -->
+      <div class="comp-card">
+        <div class="comp-title">Buttons</div>
+        <div class="comp-content">
+          <button class="btn-primary">Scan Food →</button>
+          <button class="btn-secondary">Restore Purchase</button>
+          <button class="btn-scan">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/>
+              <path d="M14 14h2v2h-2zM18 14h3M14 18v3M18 18h3v3h-3z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Scan Food Barcode
+          </button>
+        </div>
+      </div>
+
+      <!-- Verdict Badges -->
+      <div class="comp-card">
+        <div class="comp-title">Verdict Badges</div>
+        <div class="comp-content">
+          <div class="badges" style="flex-direction: column;">
+            <div class="badge badge-safe">
+              <span class="badge-icon">✓</span>
+              <div>
+                <div style="font-size: 15px; font-weight: 800;">SAFE</div>
+                <div style="font-size: 11px; font-weight: 500; opacity: 0.8;">No flagged ingredients found</div>
+              </div>
+            </div>
+            <div class="badge badge-review">
+              <span class="badge-icon">◉</span>
+              <div>
+                <div style="font-size: 15px; font-weight: 800;">REVIEW</div>
+                <div style="font-size: 11px; font-weight: 500; opacity: 0.8;">Worth discussing with your provider</div>
+              </div>
+            </div>
+            <div class="badge badge-avoid">
+              <span class="badge-icon">⚠</span>
+              <div>
+                <div style="font-size: 15px; font-weight: 800;">AVOID</div>
+                <div style="font-size: 11px; font-weight: 500; opacity: 0.8;">Contains thyroid-disruptive ingredients</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Card -->
+      <div class="comp-card">
+        <div class="comp-title">Product Card</div>
+        <div class="comp-content">
+          <div class="product-card-demo">
+            <div class="product-icon-wrap">
+              <svg width="24" height="18" viewBox="0 0 80 60" fill="none">
+                <path d="M38 28 C38 28 20 8 6 12 C0 14 2 24 8 28 C14 32 28 30 38 28Z" fill="#7B5EA7" opacity="0.9"/>
+                <path d="M38 32 C38 32 16 36 10 46 C7 51 14 56 20 52 C28 47 36 38 38 32Z" fill="#7B5EA7" opacity="0.7"/>
+                <path d="M42 28 C42 28 60 8 74 12 C80 14 78 24 72 28 C66 32 52 30 42 28Z" fill="#7B5EA7" opacity="0.9"/>
+                <path d="M42 32 C42 32 64 36 70 46 C73 51 66 56 60 52 C52 47 44 38 42 32Z" fill="#7B5EA7" opacity="0.7"/>
+                <ellipse cx="40" cy="30" rx="4" ry="12" fill="#5B3F8A"/>
+              </svg>
+            </div>
+            <div class="product-info">
+              <div class="product-name-demo">Kirkland Protein Bar</div>
+              <div class="product-meta">Scanned today · 3 ingredients flagged</div>
+            </div>
+            <div class="product-badge-demo">SAFE</div>
+          </div>
+          <div class="product-card-demo">
+            <div class="product-icon-wrap">
+              <svg width="24" height="18" viewBox="0 0 80 60" fill="none">
+                <path d="M38 28 C38 28 20 8 6 12 C0 14 2 24 8 28 C14 32 28 30 38 28Z" fill="#7B5EA7" opacity="0.9"/>
+                <path d="M38 32 C38 32 16 36 10 46 C7 51 14 56 20 52 C28 47 36 38 38 32Z" fill="#7B5EA7" opacity="0.7"/>
+                <path d="M42 28 C42 28 60 8 74 12 C80 14 78 24 72 28 C66 32 52 30 42 28Z" fill="#7B5EA7" opacity="0.9"/>
+                <path d="M42 32 C42 32 64 36 70 46 C73 51 66 56 60 52 C52 47 44 38 42 32Z" fill="#7B5EA7" opacity="0.7"/>
+                <ellipse cx="40" cy="30" rx="4" ry="12" fill="#5B3F8A"/>
+              </svg>
+            </div>
+            <div class="product-info">
+              <div class="product-name-demo">Soy Protein Powder</div>
+              <div class="product-meta">Yesterday · 5 ingredients flagged</div>
+            </div>
+            <div style="background: var(--terra-bg); color: var(--terra); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(196,96,74,0.3);">AVOID</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ingredient Row -->
+      <div class="comp-card">
+        <div class="comp-title">Ingredient Breakdown</div>
+        <div class="comp-content">
+          <div style="background: var(--surface); border-radius: 14px; padding: 16px; border: 1px solid var(--border);">
+            <div style="font-size: 13px; font-weight: 800; color: var(--plum); margin-bottom: 12px;">Flagged Ingredients <span style="background: var(--terra-bg); color: var(--terra); padding: 2px 8px; border-radius: 6px; font-size: 11px;">3</span></div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #fff; border-radius: 10px; border: 1px solid var(--border);">
+                <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--terra); flex-shrink: 0;"></div>
+                <div style="flex: 1;">
+                  <div style="font-size: 13px; font-weight: 700; color: var(--plum);">Soy Protein</div>
+                  <div style="font-size: 11px; color: var(--lavender-text);">Goitrogen · Significant</div>
+                </div>
+                <div style="font-size: 12px; color: var(--lavender-text);">▾</div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #fff; border-radius: 10px; border: 1px solid var(--border);">
+                <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--amber); flex-shrink: 0;"></div>
+                <div style="flex: 1;">
+                  <div style="font-size: 13px; font-weight: 700; color: var(--plum);">Kelp Extract</div>
+                  <div style="font-size: 11px; color: var(--lavender-text);">Iodine Excess · Moderate</div>
+                </div>
+                <div style="font-size: 12px; color: var(--lavender-text);">▾</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 6: BEFORE / AFTER ── -->
+  <div class="section">
+    <div class="section-label">06 — Before & After</div>
+    <h2 class="section-title">The Shift: Cold → Warm</h2>
+    <p class="section-desc">Same structure, completely different emotional register. Warm amethyst + coral feels like care, not compliance.</p>
+
+    <div class="ba-grid">
+      <div class="ba-card">
+        <div class="ba-header before">
+          <span class="ba-tag before">Before</span>
+          <span class="ba-title-text">Cold Purple</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-row">
+            <div class="ba-item">
+              <div class="ba-swatch" style="background: #6B48CC;"></div>
+              <div class="ba-item-text">
+                <div class="ba-item-name">Primary</div>
+                <div class="ba-item-hex">#6B48CC — cold blue-violet</div>
+              </div>
+            </div>
+            <div class="ba-item">
+              <div class="ba-swatch" style="background: #ffffff; border: 1px solid #eee;"></div>
+              <div class="ba-item-text">
+                <div class="ba-item-name">Background</div>
+                <div class="ba-item-hex">#FFFFFF — sterile white</div>
+              </div>
+            </div>
+            <div class="ba-item">
+              <div class="ba-swatch" style="background: #F7F6FC;"></div>
+              <div class="ba-item-text">
+                <div class="ba-item-name">Surface</div>
+                <div class="ba-item-hex">#F7F6FC — cold light gray</div>
+              </div>
+            </div>
+            <div class="ba-item">
+              <div class="ba-swatch" style="background: #6B48CC;"></div>
+              <div class="ba-item-text">
+                <div class="ba-item-name">CTA Button</div>
+                <div class="ba-item-hex">#6B48CC — same as brand</div>
+              </div>
+            </div>
+            <div class="ba-item">
+              <div class="ba-swatch" style="background: #1A1A2E;"></div>
+              <div class="ba-item-text">
+                <div class="ba-item-name">Text</div>
+                <div class="ba-item-hex">#1A1A2E — cold dark navy</div>
+              </div>
+            </div>
+          </div>
+          <div class="ba-note">Feels clinical and corporate. The single purple dominates everything — buttons, icons, accents — leaving no breathing room or warmth.</div>
+        </div>
+      </div>
+
+      <div class="ba-card">
+        <div class="ba-header after">
+          <span class="ba-tag after">After</span>
+          <span class="ba-title-text">Warm Amethyst</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-row">
+            <div class="ba-item">
+              <div class="ba-swatch" style="background: #7B5EA7;"></div>
+              <div class="ba-item-text">
+                <div class="ba-item-name">Primary</div>
+                <div class="ba-item-hex">#7B5EA7 — warm red-violet</div>
+              </div>
+            </div>
+            <div class="ba-item">
+              <div class="ba-swatch" style="background: #FDFBF7; border: 1px solid #eee;"></div>
+              <div class="ba-item-text">
+                <div class="ba-item-name">Background</div>
+                <div class="ba-item-hex">#FDFBF7 — warm cream</div>
+              </div>
+            </div>
+            <div class="ba-item">
+              <div class="ba-swatch" style="background: #F6F2EE;"></div>
+              <div class="ba-item-text">
+                <div class="ba-item-name">Surface</div>
+                <div class="ba-item-hex">#F6F2EE — warm linen</div>
+              </div>
+            </div>
+            <div class="ba-item">
+              <div class="ba-swatch" style="background: #E07A5F;"></div>
+              <div class="ba-item-text">
+                <div class="ba-item-name">CTA Button</div>
+                <div class="ba-item-hex">#E07A5F — warm coral (distinct)</div>
+              </div>
+            </div>
+            <div class="ba-item">
+              <div class="ba-swatch" style="background: #2D1F3D;"></div>
+              <div class="ba-item-text">
+                <div class="ba-item-name">Text</div>
+                <div class="ba-item-hex">#2D1F3D — warm deep plum</div>
+              </div>
+            </div>
+          </div>
+          <div class="ba-note" style="background: var(--amethyst-light); border: 1px solid rgba(123,94,167,0.15);">Coral CTA separates action from brand. Warm cream backgrounds feel human and approachable. The overall effect is caring, not clinical.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="preview-footer">
+  <div class="footer-title">ThyraScan · Warm Wellness Identity</div>
+  <div class="footer-sub">Ready to implement? Say the word.</div>
+</div>
+
+</body>
+</html>

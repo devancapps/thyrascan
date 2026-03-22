@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  View,
-} from "react-native";
+import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { colors, spacing } from "../styles/theme";
 
@@ -21,7 +16,7 @@ export default function ScanButton({ onPress, atLimit }: ScanButtonProps) {
       activeOpacity={0.8}
     >
       <View style={styles.inner}>
-        <Ionicons name="scan" size={28} color={colors.white} />
+        <Ionicons name="scan" size={26} color={colors.white} />
         <Text style={styles.text}>Scan Food</Text>
       </View>
     </TouchableOpacity>
@@ -31,18 +26,18 @@ export default function ScanButton({ onPress, atLimit }: ScanButtonProps) {
 const styles = StyleSheet.create({
   button: {
     height: 64,
-    borderRadius: 16,
-    backgroundColor: colors.primary,
+    borderRadius: 18,
+    backgroundColor: colors.coral,
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: colors.primary,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 6,
+    shadowColor: colors.coral,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.38,
+    shadowRadius: 12,
+    elevation: 7,
   },
   atLimit: {
-    opacity: 0.5,
+    opacity: 0.45,
   },
   inner: {
     flexDirection: "row",
@@ -51,7 +46,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.white,
-    fontSize: 20,
-    fontWeight: "700",
+    fontSize: 19,
+    fontWeight: "800",
+    letterSpacing: 0.3,
   },
 });

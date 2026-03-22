@@ -15,8 +15,9 @@ import * as AppleAuthentication from "expo-apple-authentication";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types";
 import { useAuth } from "../hooks/useAuth";
+import ButterflyLogo from "../components/ButterflyLogo";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { colors, spacing, buttonStyle, buttonTextStyle } from "../styles/theme";
+import { colors, spacing, borderRadius, buttonStyle, buttonTextStyle } from "../styles/theme";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Login">;
 
@@ -34,10 +35,9 @@ export default function LoginScreen({ navigation }: Props) {
 
   async function handleEmailAuth() {
     if (!email.trim() || !password.trim()) {
-      Alert.alert("Error", "Please enter your email and password.");
+      Alert.alert("Missing info", "Please enter your email and password.");
       return;
     }
-
     setLoading(true);
     try {
       if (isSignUp) {
@@ -63,10 +63,7 @@ export default function LoginScreen({ navigation }: Props) {
       const message = (error as { message?: string }).message;
       console.error("[AppleSignIn] failed:", code, message);
       if (code !== "ERR_REQUEST_CANCELED") {
-        Alert.alert(
-          "Error",
-          `${code ?? "unknown"}: ${message ?? "no message"}`,
-        );
+        Alert.alert("Error", `${code ?? "unknown"}: ${message ?? "no message"}`);
       }
     } finally {
       setLoading(false);
@@ -87,13 +84,20 @@ export default function LoginScreen({ navigation }: Props) {
           contentContainerStyle={styles.scrollContent}
           keyboardShouldPersistTaps="handled"
         >
+          <View style={styles.logoRow}>
+            <View style={styles.logoWrap}>
+              <ButterflyLogo size={36} />
+            </View>
+            <Text style={styles.appName}>ThyraScan</Text>
+          </View>
+
           <View style={styles.header}>
             <Text style={styles.title}>
-              {isSignUp ? "Create Account" : "Welcome Back"}
+              {isSignUp ? "Create account" : "Welcome back"}
             </Text>
             <Text style={styles.subtitle}>
               {isSignUp
-                ? "Create your ThyraScan account"
+                ? "Start scanning thyroid-friendly foods"
                 : "Sign in to continue scanning"}
             </Text>
           </View>
@@ -101,7 +105,7 @@ export default function LoginScreen({ navigation }: Props) {
           <View style={styles.form}>
             <TextInput
               style={styles.input}
-              placeholder="Email"
+              placeholder="Email address"
               placeholderTextColor={colors.textSecondary}
               value={email}
               onChangeText={setEmail}
@@ -148,20 +152,19 @@ export default function LoginScreen({ navigation }: Props) {
                 <Text style={styles.dividerText}>or</Text>
                 <View style={styles.dividerLine} />
               </View>
-
               <AppleAuthentication.AppleAuthenticationButton
-                buttonType={
-                  AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN
-                }
-                buttonStyle={
-                  AppleAuthentication.AppleAuthenticationButtonStyle.BLACK
-                }
-                cornerRadius={14}
+                buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+                buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+                cornerRadius={borderRadius.button}
                 style={styles.appleButton}
                 onPress={handleAppleSignIn}
               />
             </View>
           )}
+
+          <Text style={styles.disclaimer}>
+            For educational purposes only. Not a medical device.
+          </Text>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -173,54 +176,75 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
-  flex: {
-    flex: 1,
-  },
+  flex: { flex: 1 },
   scrollContent: {
     flexGrow: 1,
     justifyContent: "center",
     paddingHorizontal: spacing.xl,
     paddingVertical: spacing.xl,
+    gap: spacing.lg,
+  },
+  logoRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: spacing.sm,
+    marginBottom: spacing.xs,
+  },
+  logoWrap: {
+    width: 52,
+    height: 52,
+    borderRadius: 16,
+    backgroundColor: colors.primaryLight,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  appName: {
+    fontSize: 22,
+    fontWeight: "800",
+    color: colors.textPrimary,
+    letterSpacing: -0.3,
   },
   header: {
     alignItems: "center",
-    marginBottom: spacing.xl,
+    gap: spacing.xs,
   },
   title: {
-    fontSize: 28,
+    fontSize: 26,
     fontWeight: "800",
     color: colors.textPrimary,
-    marginBottom: spacing.sm,
+    letterSpacing: -0.5,
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 15,
     color: colors.textSecondary,
     textAlign: "center",
+    fontWeight: "500",
   },
   form: {
     gap: spacing.md,
   },
   input: {
-    height: 52,
-    borderWidth: 1,
+    height: 54,
+    borderWidth: 1.5,
     borderColor: colors.border,
-    borderRadius: 12,
+    borderRadius: borderRadius.md,
     paddingHorizontal: spacing.md,
     fontSize: 16,
     color: colors.textPrimary,
     backgroundColor: colors.secondaryBackground,
+    fontWeight: "500",
   },
   toggleButton: {
     alignItems: "center",
-    paddingVertical: spacing.sm,
+    paddingVertical: spacing.xs,
   },
   toggleText: {
     fontSize: 14,
     color: colors.primary,
-    fontWeight: "600",
+    fontWeight: "700",
   },
   appleSection: {
-    marginTop: spacing.lg,
     gap: spacing.md,
   },
   divider: {
@@ -234,11 +258,19 @@ const styles = StyleSheet.create({
     backgroundColor: colors.border,
   },
   dividerText: {
-    fontSize: 14,
+    fontSize: 13,
     color: colors.textSecondary,
+    fontWeight: "600",
   },
   appleButton: {
     height: 56,
     width: "100%",
+  },
+  disclaimer: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    textAlign: "center",
+    fontWeight: "500",
+    marginTop: spacing.xs,
   },
 });

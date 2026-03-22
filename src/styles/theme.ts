@@ -1,33 +1,40 @@
 import { ViewStyle, TextStyle } from "react-native";
 
 export const colors = {
-  // Brand — purple (thyroid awareness ribbon)
-  primary: "#6B48CC",
-  primaryDark: "#5236A8",
-  primaryLight: "#EDE9FA",
+  // Brand — warm amethyst (thyroid awareness butterfly)
+  primary: "#7B5EA7",
+  primaryDark: "#5B3F8A",
+  primaryLight: "#F0EBF8",
 
-  // Backgrounds
-  background: "#FFFFFF",
-  secondaryBackground: "#F7F6FC",
+  // Warm coral — CTA / action (distinct from brand purple)
+  coral: "#E07A5F",
+  coralDark: "#C8623E",
 
-  // Text
-  textPrimary: "#1A1A2E",
-  textSecondary: "#6B7280",
+  // Backgrounds — warm cream, not sterile white
+  background: "#FDFBF7",
+  secondaryBackground: "#F6F2EE",
+
+  // Text — warm plum tones
+  textPrimary: "#2D1F3D",
+  textSecondary: "#8B7BA8",
 
   // UI chrome
-  border: "#E8E5F0",
+  border: "#EAE4F0",
   white: "#FFFFFF",
   black: "#000000",
-  error: "#EF4444",
-  overlay: "rgba(0, 0, 0, 0.5)",
+  error: "#C4604A",
+  overlay: "rgba(45, 31, 61, 0.5)",
 
-  // Verdict — muted, calm (not alarming)
-  verdictSafe: "#2ECC71",
-  verdictSafeBg: "#EAFAF1",
-  verdictReview: "#D97706",
-  verdictReviewBg: "#FEF3C7",
-  verdictAvoid: "#DC4B4B",
-  verdictAvoidBg: "#FEF0F0",
+  // Premium gold
+  gold: "#D4A043",
+
+  // Verdict — warm, calm (never screaming)
+  verdictSafe: "#52A788",
+  verdictSafeBg: "#E8F5EF",
+  verdictReview: "#C9864A",
+  verdictReviewBg: "#FDF0E6",
+  verdictAvoid: "#C4604A",
+  verdictAvoidBg: "#FAEAE6",
 } as const;
 
 export const spacing = {
@@ -43,44 +50,70 @@ export const borderRadius = {
   sm: 8,
   md: 12,
   lg: 16,
-  button: 14,
+  xl: 24,
+  button: 16,
+  pill: 100,
 } as const;
 
 export const cardStyle: ViewStyle = {
   backgroundColor: colors.white,
   borderRadius: borderRadius.lg,
   padding: spacing.md,
-  shadowColor: colors.black,
+  shadowColor: colors.primaryDark,
   shadowOffset: { width: 0, height: 2 },
-  shadowOpacity: 0.08,
-  shadowRadius: 8,
+  shadowOpacity: 0.07,
+  shadowRadius: 10,
   elevation: 3,
 };
 
 export const buttonStyle: ViewStyle = {
   height: 56,
   borderRadius: borderRadius.button,
-  backgroundColor: colors.primary,
+  backgroundColor: colors.coral,
+  alignItems: "center",
+  justifyContent: "center",
+  paddingHorizontal: spacing.lg,
+  shadowColor: colors.coral,
+  shadowOffset: { width: 0, height: 4 },
+  shadowOpacity: 0.3,
+  shadowRadius: 10,
+  elevation: 5,
+};
+
+export const buttonTextStyle: TextStyle = {
+  color: colors.white,
+  fontSize: 17,
+  fontWeight: "800",
+  letterSpacing: 0.3,
+};
+
+export const secondaryButtonStyle: ViewStyle = {
+  height: 56,
+  borderRadius: borderRadius.button,
+  backgroundColor: "transparent",
+  borderWidth: 2,
+  borderColor: colors.primary,
   alignItems: "center",
   justifyContent: "center",
   paddingHorizontal: spacing.lg,
 };
 
-export const buttonTextStyle: TextStyle = {
-  color: colors.white,
-  fontSize: 18,
+export const secondaryButtonTextStyle: TextStyle = {
+  color: colors.primary,
+  fontSize: 17,
   fontWeight: "700",
 };
 
 export const typography = {
   h1: {
     fontSize: 28,
-    fontWeight: "700" as const,
+    fontWeight: "800" as const,
     color: colors.textPrimary,
+    letterSpacing: -0.5,
   },
   h2: {
     fontSize: 22,
-    fontWeight: "600" as const,
+    fontWeight: "700" as const,
     color: colors.textPrimary,
   },
   h3: {
@@ -92,17 +125,18 @@ export const typography = {
     fontSize: 16,
     fontWeight: "400" as const,
     color: colors.textPrimary,
-    lineHeight: 24,
+    lineHeight: 26,
   },
   bodySmall: {
     fontSize: 14,
     fontWeight: "400" as const,
     color: colors.textSecondary,
-    lineHeight: 20,
+    lineHeight: 22,
   },
   caption: {
     fontSize: 12,
-    fontWeight: "400" as const,
+    fontWeight: "500" as const,
     color: colors.textSecondary,
+    lineHeight: 18,
   },
 } as const;
