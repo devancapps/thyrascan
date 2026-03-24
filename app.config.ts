@@ -17,6 +17,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ios: {
     supportsTablet: false,
     bundleIdentifier: "com.thyrascan.app",
+    deploymentTarget: "13.4",
     buildNumber: config.ios?.buildNumber,
     usesAppleSignIn: true,
     infoPlist: {

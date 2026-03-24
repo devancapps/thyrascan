@@ -129,7 +129,7 @@ export default function ScannerScreen({ navigation }: Props) {
           onPress={requestPermission}
           activeOpacity={0.8}
         >
-          <Text style={buttonTextStyle}>Allow Camera</Text>
+          <Text style={buttonTextStyle}>Continue</Text>
         </TouchableOpacity>
       </SafeAreaView>
     );

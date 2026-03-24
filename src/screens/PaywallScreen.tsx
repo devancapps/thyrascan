@@ -180,7 +180,7 @@ export default function PaywallScreen({ navigation }: Props) {
         <View style={styles.legalLinks}>
           <TouchableOpacity
             onPress={() =>
-              Linking.openURL("https://thyrascan.app/privacy")
+              Linking.openURL("https://devancapps.github.io/thyrascan/privacy.html")
             }
           >
             <Text style={styles.legalLink}>Privacy Policy</Text>
