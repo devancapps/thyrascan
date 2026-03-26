@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SafeScan Systems — Brand Preview</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #070d1a;
+  color: #f0f4f8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  padding: 60px 48px;
+}
+.page-wrap { max-width: 1200px; margin: 0 auto; }
+
+.page-header { text-align: center; margin-bottom: 80px; }
+.page-header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+.page-header .sub { font-size: 14px; color: #4a6080; margin-top: 8px; }
+.page-header hr { border: none; border-top: 1px solid #0f1f35; width: 48px; margin: 24px auto 0; }
+
+section { margin-bottom: 96px; }
+.section-label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px;
+  color: #3a5070; margin-bottom: 40px;
+  padding-bottom: 14px; border-bottom: 1px solid #0c1828;
+}
+
+/* ── ICON GRID ── */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px 24px;
+}
+.icon-cell { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.icon-square {
+  width: 120px; height: 120px;
+  border-radius: 27px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
+}
+.icon-square svg { display: block; width: 100%; height: 100%; }
+.icon-meta { text-align: center; }
+.icon-meta h3 { font-size: 14px; font-weight: 600; }
+.icon-meta .cat { font-size: 12px; color: #4a6080; margin-top: 3px; }
+.icon-meta .hex { font-size: 11px; font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace; color: #344a64; margin-top: 5px; }
+.badge {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 4px; margin-top: 7px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-live { background: #7f1d1d; color: #fca5a5; }
+.badge-ready { background: #14532d; color: #86efac; }
+.badge-design { background: #1e3a5f; color: #93c5fd; }
+.badge-planned { background: #1f2937; color: #6b7280; }
+
+/* ── SPLASH GRID ── */
+.splash-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px 24px;
+}
+.splash-cell { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.phone {
+  width: 162px; height: 330px;
+  background: #0a0a14;
+  border-radius: 32px;
+  border: 3px solid #1a2535;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.7), 0 4px 16px rgba(0,0,0,0.4),
+              inset 0 0 0 1px rgba(255,255,255,0.025);
+}
+.phone-notch {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 56px; height: 20px; background: #0a0a14;
+  border-radius: 0 0 14px 14px; z-index: 10;
+}
+.phone-screen {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 16px; padding: 24px 20px;
+  position: relative;
+}
+.splash-symbol { flex-shrink: 0; }
+.splash-text { text-align: center; }
+.splash-name { font-size: 15px; font-weight: 700; color: white; letter-spacing: -0.2px; }
+.splash-tagline { font-size: 10px; color: rgba(255,255,255,0.55); margin-top: 4px; }
+.splash-by {
+  position: absolute; bottom: 18px;
+  font-size: 9.5px; color: rgba(255,255,255,0.3); letter-spacing: 0.4px;
+}
+.splash-meta { text-align: center; }
+.splash-meta h4 { font-size: 13px; font-weight: 600; }
+.splash-meta p { font-size: 11px; color: #3a5070; margin-top: 3px; font-family: monospace; }
+
+/* ── NOTES ── */
+.notes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.note { background: #0b1525; border: 1px solid #0f1f35; border-radius: 12px; padding: 22px; }
+.note h4 { font-size: 13px; font-weight: 600; margin-bottom: 10px; color: #c8d8ec; }
+.note p { font-size: 13px; color: #4a6080; line-height: 1.65; }
+.note code {
+  background: rgba(255,255,255,0.05); padding: 2px 7px;
+  border-radius: 4px; font-size: 11.5px;
+  font-family: 'SF Mono', monospace; color: #7eb8d8;
+}
+.note .step { font-size: 12px; color: #4a6080; line-height: 1.8; }
+.note .step b { color: #7eb8d8; }
+
+/* ── COMPARE ── */
+.compare-row { display: flex; gap: 48px; align-items: flex-start; }
+.compare-col { flex: 1; }
+.compare-col h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: #3a5070; margin-bottom: 20px; }
+.before-icon, .after-icon {
+  width: 100px; height: 100px; border-radius: 22px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.before-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ── THYRASCAN SPLASH ANIMATIONS ── */
+@keyframes thyraSplashBg {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes thyraSplashLogo {
+  from { opacity: 0; transform: scale(0.82); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes thyraSplashName {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes thyraSplashTag {
+  from { opacity: 0; }
+  to   { opacity: 0.55; }
+}
+@keyframes thyraSplashByline {
+  from { opacity: 0; }
+  to   { opacity: 0.3; }
+}
+.thyrascan-screen  { animation: thyraSplashBg     0.4s ease both; }
+.thyrascan-symbol  { animation: thyraSplashLogo   0.5s 0.3s ease-out both; }
+.thyrascan-name    { animation: thyraSplashName   0.4s 0.6s ease-out both; }
+.thyrascan-tagline { animation: thyraSplashTag    0.4s 0.9s ease both; }
+.thyrascan-by      { animation: thyraSplashByline 0.4s 1.2s ease both; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<header class="page-header">
+  <h1>SafeScan Systems — Brand Preview</h1>
+  <p class="sub">Icons &amp; splash screens for all 8 condition-specific food scanner apps</p>
+  <hr>
+</header>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 1 — APP ICONS
+═══════════════════════════════════════════ -->
+<section>
+  <p class="section-label">App Icons — iOS Rounded Square (1024 × 1024 export target)</p>
+  <div class="icon-grid">
+
+    <!-- ADHDScan -->
+    <div class="icon-cell">
+      <div class="icon-square">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" fill="#8b5cf6"/>
+          <polygon points="57,17 35,54 50,54 42,83 65,46 50,46" fill="white"/>
+        </svg>
+      </div>
+      <div class="icon-meta">
+        <h3>ADHDScan</h3>
+        <p class="cat">ADHD / Focus</p>
+        <p class="hex">#8b5cf6</p>
+        <span class="badge badge-live">Live — Icon Needs Update</span>
+      </div>
+    </div>
+
+    <!-- ThyraScan -->
+    <div class="icon-cell">
+      <div class="icon-square">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="thyraBg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#22d4be"/>
+              <stop offset="100%" style="stop-color:#0a9685"/>
+            </linearGradient>
+          </defs>
+          <rect width="100" height="100" fill="url(#thyraBg)"/>
+          <path d="M50,58 C43,44 22,38 19,52 C16,66 37,73 50,64 Z" fill="white"/>
+          <path d="M50,58 C57,44 78,38 81,52 C84,66 63,73 50,64 Z" fill="white"/>
+          <ellipse cx="50" cy="62" rx="4" ry="8" fill="white" opacity="0.4"/>
+          <path d="M46,56 C42,50 37,44 33,40" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.65"/>
+          <path d="M54,56 C58,50 63,44 67,40" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.65"/>
+          <circle cx="33" cy="39" r="3" fill="white" opacity="0.65"/>
+          <circle cx="67" cy="39" r="3" fill="white" opacity="0.65"/>
+        </svg>
+      </div>
+      <div class="icon-meta">
+        <h3>ThyraScan</h3>
+        <p class="cat">Thyroid / Hashimoto's</p>
+        <p class="hex">#14b8a6</p>
+        <span class="badge badge-ready">Ready to Launch</span>
+      </div>
+    </div>
+
+    <!-- IBSScan -->
+    <div class="icon-cell">
+      <div class="icon-square">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" fill="#22c55e"/>
+          <path d="M26,27 C13,27 12,41 27,42 L61,42 C75,42 77,55 63,57 L37,57 C20,57 18,71 33,72 L70,72 C84,72 85,84 71,84"
+                fill="none" stroke="white" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="icon-meta">
+        <h3>IBSScan</h3>
+        <p class="cat">IBS / Gut Health</p>
+        <p class="hex">#22c55e</p>
+        <span class="badge badge-design">In Design</span>
+      </div>
+    </div>
+
+    <!-- GERDScan -->
+    <div class="icon-cell">
+      <div class="icon-square">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" fill="#f97316"/>
+          <path d="M50,83 C30,83 19,66 25,49 C29,37 36,31 36,43 C40,56 44,44 42,28 C50,16 62,12 60,31 C59,42 66,47 73,38 C78,54 73,83 50,83 Z" fill="white"/>
+          <path d="M50,76 C37,76 31,65 36,53 C39,46 44,44 44,51 C46,59 49,52 49,43 C53,38 58,40 57,50 C56.5,56 61,60 66,53 C69,63 66,76 50,76 Z" fill="#f97316" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="icon-meta">
+        <h3>GERDScan</h3>
+        <p class="cat">GERD / Acid Reflux</p>
+        <p class="hex">#f97316</p>
+        <span class="badge badge-planned">Planned</span>
+      </div>
+    </div>
+
+    <!-- PCOSScan -->
+    <div class="icon-cell">
+      <div class="icon-square">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" fill="#a855f7"/>
+          <path d="M34,50 Q50,37 66,50" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="30" cy="57" r="15" fill="none" stroke="white" stroke-width="6.5"/>
+          <circle cx="70" cy="57" r="15" fill="none" stroke="white" stroke-width="6.5"/>
+          <circle cx="30" cy="57" r="5" fill="white"/>
+          <circle cx="70" cy="57" r="5" fill="white"/>
+          <circle cx="21" cy="51" r="2.5" fill="white" opacity="0.4"/>
+          <circle cx="39" cy="44" r="2.5" fill="white" opacity="0.4"/>
+          <circle cx="61" cy="44" r="2.5" fill="white" opacity="0.4"/>
+          <circle cx="79" cy="51" r="2.5" fill="white" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="icon-meta">
+        <h3>PCOSScan</h3>
+        <p class="cat">PCOS / Hormones</p>
+        <p class="hex">#a855f7</p>
+        <span class="badge badge-planned">Planned</span>
+      </div>
+    </div>
+
+    <!-- MigraineScan -->
+    <div class="icon-cell">
+      <div class="icon-square">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" fill="#3b82f6"/>
+          <ellipse cx="50" cy="43" rx="24" ry="26" fill="white"/>
+          <rect x="44" y="67" width="12" height="10" rx="3" fill="white"/>
+          <polygon points="55,24 43,47 52,47 43,64 63,39 54,39" fill="#3b82f6"/>
+        </svg>
+      </div>
+      <div class="icon-meta">
+        <h3>MigraineScan</h3>
+        <p class="cat">Migraine / Headache</p>
+        <p class="hex">#3b82f6</p>
+        <span class="badge badge-planned">Planned</span>
+      </div>
+    </div>
+
+    <!-- HistaScan -->
+    <div class="icon-cell">
+      <div class="icon-square">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" fill="#eab308"/>
+          <path d="M50,17 L74,27 L74,54 C74,68 62,78 50,83 C38,78 26,68 26,54 L26,27 Z" fill="white"/>
+          <path d="M38,37 L38,63 M38,50 L62,50 M62,37 L62,63"
+                fill="none" stroke="#eab308" stroke-width="8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="icon-meta">
+        <h3>HistaScan</h3>
+        <p class="cat">Histamine Intolerance</p>
+        <p class="hex">#eab308</p>
+        <span class="badge badge-planned">Planned</span>
+      </div>
+    </div>
+
+    <!-- EndoScan -->
+    <div class="icon-cell">
+      <div class="icon-square">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" fill="#ec4899"/>
+          <ellipse cx="50" cy="34" rx="12" ry="18" fill="white"/>
+          <ellipse cx="50" cy="66" rx="12" ry="18" fill="white"/>
+          <ellipse cx="34" cy="50" rx="18" ry="12" fill="white"/>
+          <ellipse cx="66" cy="50" rx="18" ry="12" fill="white"/>
+          <circle cx="50" cy="50" r="12" fill="#ec4899"/>
+          <circle cx="50" cy="50" r="5.5" fill="white"/>
+        </svg>
+      </div>
+      <div class="icon-meta">
+        <h3>EndoScan</h3>
+        <p class="cat">Endometriosis</p>
+        <p class="hex">#ec4899</p>
+        <span class="badge badge-planned">Planned</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 2 — SPLASH SCREENS
+═══════════════════════════════════════════ -->
+<section>
+  <p class="section-label">Splash Screens — Portrait Mockup (export at 1284 × 2778 px)</p>
+  <div class="splash-grid">
+
+    <!-- ADHDScan splash -->
+    <div class="splash-cell">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen" style="background:linear-gradient(155deg,#9d6ff5 0%,#7038e0 100%)">
+          <svg class="splash-symbol" width="76" height="76" viewBox="0 0 100 100">
+            <polygon points="57,17 35,54 50,54 42,83 65,46 50,46" fill="white"/>
+          </svg>
+          <div class="splash-text">
+            <div class="splash-name">ADHD Food Scanner</div>
+            <div class="splash-tagline">Scan for focus &amp; attention triggers</div>
+          </div>
+          <div class="splash-by">by SafeScan Systems</div>
+        </div>
+      </div>
+      <div class="splash-meta"><h4>ADHDScan</h4><p>#8b5cf6 gradient</p></div>
+    </div>
+
+    <!-- ThyraScan splash -->
+    <div class="splash-cell">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen thyrascan-screen" style="background:linear-gradient(155deg,#22d4be 0%,#0a9685 100%)">
+          <svg class="splash-symbol thyrascan-symbol" width="82" height="82" viewBox="0 0 100 100">
+            <path d="M50,58 C43,44 22,38 19,52 C16,66 37,73 50,64 Z" fill="white"/>
+            <path d="M50,58 C57,44 78,38 81,52 C84,66 63,73 50,64 Z" fill="white"/>
+            <ellipse cx="50" cy="62" rx="4" ry="8" fill="white" opacity="0.45"/>
+          </svg>
+          <div class="splash-text">
+            <div class="splash-name thyrascan-name">ThyraScan</div>
+            <div class="splash-tagline thyrascan-tagline">Thyroid-aware food scanning</div>
+          </div>
+          <div class="splash-by thyrascan-by">by SafeScan Systems</div>
+        </div>
+      </div>
+      <div class="splash-meta"><h4>ThyraScan</h4><p>#14b8a6 gradient</p></div>
+    </div>
+
+    <!-- IBSScan splash -->
+    <div class="splash-cell">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen" style="background:linear-gradient(155deg,#4ade80 0%,#15803d 100%)">
+          <svg class="splash-symbol" width="80" height="80" viewBox="0 0 100 100">
+            <path d="M26,27 C13,27 12,41 27,42 L61,42 C75,42 77,55 63,57 L37,57 C20,57 18,71 33,72 L70,72 C84,72 85,84 71,84"
+                  fill="none" stroke="white" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="splash-text">
+            <div class="splash-name">IBSScan</div>
+            <div class="splash-tagline">IBS &amp; gut health food scanning</div>
+          </div>
+          <div class="splash-by">by SafeScan Systems</div>
+        </div>
+      </div>
+      <div class="splash-meta"><h4>IBSScan</h4><p>#22c55e gradient</p></div>
+    </div>
+
+    <!-- GERDScan splash -->
+    <div class="splash-cell">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen" style="background:linear-gradient(155deg,#fb923c 0%,#c2410c 100%)">
+          <svg class="splash-symbol" width="76" height="82" viewBox="0 0 100 100">
+            <path d="M50,83 C30,83 19,66 25,49 C29,37 36,31 36,43 C40,56 44,44 42,28 C50,16 62,12 60,31 C59,42 66,47 73,38 C78,54 73,83 50,83 Z" fill="white"/>
+          </svg>
+          <div class="splash-text">
+            <div class="splash-name">GERDScan</div>
+            <div class="splash-tagline">Acid reflux food scanning</div>
+          </div>
+          <div class="splash-by">by SafeScan Systems</div>
+        </div>
+      </div>
+      <div class="splash-meta"><h4>GERDScan</h4><p>#f97316 gradient</p></div>
+    </div>
+
+    <!-- PCOSScan splash -->
+    <div class="splash-cell">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen" style="background:linear-gradient(155deg,#c084fc 0%,#7e22ce 100%)">
+          <svg class="splash-symbol" width="82" height="76" viewBox="0 0 100 100">
+            <path d="M34,50 Q50,37 66,50" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="30" cy="57" r="15" fill="none" stroke="white" stroke-width="6.5"/>
+            <circle cx="70" cy="57" r="15" fill="none" stroke="white" stroke-width="6.5"/>
+            <circle cx="30" cy="57" r="5" fill="white"/>
+            <circle cx="70" cy="57" r="5" fill="white"/>
+          </svg>
+          <div class="splash-text">
+            <div class="splash-name">PCOSScan</div>
+            <div class="splash-tagline">PCOS &amp; hormone food scanning</div>
+          </div>
+          <div class="splash-by">by SafeScan Systems</div>
+        </div>
+      </div>
+      <div class="splash-meta"><h4>PCOSScan</h4><p>#a855f7 gradient</p></div>
+    </div>
+
+    <!-- MigraineScan splash -->
+    <div class="splash-cell">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen" style="background:linear-gradient(155deg,#60a5fa 0%,#1d4ed8 100%)">
+          <svg class="splash-symbol" width="74" height="84" viewBox="0 0 100 100">
+            <ellipse cx="50" cy="43" rx="24" ry="26" fill="white"/>
+            <rect x="44" y="67" width="12" height="10" rx="3" fill="white"/>
+            <!-- bolt in darker blue so it reads on the gradient -->
+            <polygon points="55,24 43,47 52,47 43,64 63,39 54,39" fill="rgba(29,78,216,0.75)"/>
+          </svg>
+          <div class="splash-text">
+            <div class="splash-name">MigraineScan</div>
+            <div class="splash-tagline">Migraine trigger food scanning</div>
+          </div>
+          <div class="splash-by">by SafeScan Systems</div>
+        </div>
+      </div>
+      <div class="splash-meta"><h4>MigraineScan</h4><p>#3b82f6 gradient</p></div>
+    </div>
+
+    <!-- HistaScan splash -->
+    <div class="splash-cell">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen" style="background:linear-gradient(155deg,#fde047 0%,#b45309 100%)">
+          <svg class="splash-symbol" width="76" height="82" viewBox="0 0 100 100">
+            <path d="M50,17 L74,27 L74,54 C74,68 62,78 50,83 C38,78 26,68 26,54 L26,27 Z" fill="white"/>
+            <path d="M38,37 L38,63 M38,50 L62,50 M62,37 L62,63"
+                  fill="none" stroke="#d97706" stroke-width="8" stroke-linecap="round"/>
+          </svg>
+          <div class="splash-text">
+            <div class="splash-name">HistaScan</div>
+            <div class="splash-tagline">Histamine intolerance food scanning</div>
+          </div>
+          <div class="splash-by">by SafeScan Systems</div>
+        </div>
+      </div>
+      <div class="splash-meta"><h4>HistaScan</h4><p>#eab308 gradient</p></div>
+    </div>
+
+    <!-- EndoScan splash -->
+    <div class="splash-cell">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen" style="background:linear-gradient(155deg,#f472b6 0%,#be185d 100%)">
+          <svg class="splash-symbol" width="80" height="80" viewBox="0 0 100 100">
+            <ellipse cx="50" cy="34" rx="12" ry="18" fill="white"/>
+            <ellipse cx="50" cy="66" rx="12" ry="18" fill="white"/>
+            <ellipse cx="34" cy="50" rx="18" ry="12" fill="white"/>
+            <ellipse cx="66" cy="50" rx="18" ry="12" fill="white"/>
+            <circle cx="50" cy="50" r="12" fill="#ec4899" opacity="0.9"/>
+            <circle cx="50" cy="50" r="5.5" fill="white"/>
+          </svg>
+          <div class="splash-text">
+            <div class="splash-name">EndoScan</div>
+            <div class="splash-tagline">Endometriosis food scanning</div>
+          </div>
+          <div class="splash-by">by SafeScan Systems</div>
+        </div>
+      </div>
+      <div class="splash-meta"><h4>EndoScan</h4><p>#ec4899 gradient</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 3 — IMPLEMENTATION NOTES
+═══════════════════════════════════════════ -->
+<section>
+  <p class="section-label">Implementation — How Splash Screens Work &amp; What to Do Next</p>
+  <div class="notes-grid">
+
+    <div class="note">
+      <h4>How Expo Splash Screens Work</h4>
+      <p>The OS holds the native splash on screen while your JavaScript bundle loads. <code>expo-splash-screen</code> lets you hold it longer and dismiss with a fade. The <code>backgroundColor</code> in <code>app.config.ts</code> fills any screen area not covered by the splash image — it must match the first screen's background color or the transition will show a jarring color jump. All SafeScan apps use <code>#FDFBF7</code> (warm cream) as both splash bg and first-screen bg.</p>
+    </div>
+
+    <div class="note">
+      <h4>Minimum Fix — Already Applied</h4>
+      <p><code>app.config.ts</code> for ADHDScan has been updated: <code>backgroundColor: "#8B5CF6"</code>. This alone eliminates the white flash. The splash image is still the placeholder, but the background color fills the screen in brand violet until the new PNG is in place. Requires <code>eas build</code> — JS-only OTA won't change native splash.</p>
+    </div>
+
+    <div class="note">
+      <h4>Exporting Icons to PNG</h4>
+      <p class="step">
+        <b>Option 1 — Figma:</b> Paste SVG code into Figma frame, resize to 1024×1024, export PNG.<br><br>
+        <b>Option 2 — Browser:</b> Right-click any icon above, "Save as SVG" (via DevTools), then convert.<br><br>
+        <b>Option 3 — CLI:</b> Install <code>sharp-cli</code> and run:<br>
+        <code>npx sharp-cli -i icon.svg -o icon.png resize 1024</code>
+      </p>
+    </div>
+
+    <div class="note">
+      <h4>App Store Connect — Icon Update</h4>
+      <p>The ADHDScan App Store listing currently shows the Expo default "A" icon. To update: export the violet lightning bolt icon at 1024×1024 PNG → App Store Connect → App Information → upload new icon. Icon-only changes can go through review without a full binary resubmit in some cases, but typically require a new build.</p>
+    </div>
+
+    <div class="note">
+      <h4>Splash Image Replacement</h4>
+      <p>Replace <code>assets/splash-icon.png</code> with the exported PNG at 1284×2778px. The image should show the brand-color background with the white symbol centered — so it's visually identical to the <code>backgroundColor</code> shown behind it. Use <code>resizeMode: "contain"</code> so no cropping occurs on smaller devices.</p>
+    </div>
+
+    <div class="note">
+      <h4>Android Adaptive Icons</h4>
+      <p>Android needs two separate files: <code>android-icon-foreground.png</code> (white symbol on transparent, 108×108dp safe zone) and <code>android-icon-background.png</code> (solid brand color). The foreground is just the white lightning bolt SVG on a transparent canvas. Background: solid <code>#8b5cf6</code> fill.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 4 — CLAUDE REFERENCE (AI-READABLE SPEC)
+     This section exists purely so Claude can read this file and know
+     exactly how to build icons, splash screens, and App.tsx for every
+     SafeScan Systems app without guessing.
+═══════════════════════════════════════════ -->
+<section>
+  <p class="section-label">Claude Reference — Asset Specs &amp; Code Patterns for All 8 Apps</p>
+
+  <!-- ── SYSTEM OVERVIEW ── -->
+  <div class="note" style="margin-bottom:24px;max-width:100%">
+    <h4>How SafeScan Systems Apps Are Built</h4>
+    <p>Every app in the portfolio is a React Native / Expo (SDK 55+) app built from the same template as ThyraScan.
+    Each app has a unique brand color and a medical symbol as its icon. The splash screen is a full-gradient background
+    matching the icon, with the white symbol centered, the app name, tagline, and "by SafeScan Systems" byline.
+    All asset PNGs are generated by <code>scripts/generate-app-icon.js</code> using <code>sharp</code> (not installed in package.json — run with <code>npm install sharp --no-save</code>).
+    Splash transitions use <code>expo-splash-screen</code> with <code>preventAutoHideAsync()</code> and a 400ms fade,
+    held until auth + subscription + profile providers all finish loading.</p>
+  </div>
+
+  <!-- ── PER-APP SPEC TABLE ── -->
+  <div class="note" style="margin-bottom:24px;max-width:100%;overflow-x:auto">
+    <h4>Per-App Color &amp; Asset Specification</h4>
+    <table style="width:100%;border-collapse:collapse;font-size:12px;margin-top:12px">
+      <thead>
+        <tr style="border-bottom:1px solid #0f1f35">
+          <th style="text-align:left;padding:8px 12px;color:#4a6080;font-size:10px;text-transform:uppercase;letter-spacing:1px">App</th>
+          <th style="text-align:left;padding:8px 12px;color:#4a6080;font-size:10px;text-transform:uppercase;letter-spacing:1px">Condition</th>
+          <th style="text-align:left;padding:8px 12px;color:#4a6080;font-size:10px;text-transform:uppercase;letter-spacing:1px">Gradient (icon/splash)</th>
+          <th style="text-align:left;padding:8px 12px;color:#4a6080;font-size:10px;text-transform:uppercase;letter-spacing:1px">Android BG</th>
+          <th style="text-align:left;padding:8px 12px;color:#4a6080;font-size:10px;text-transform:uppercase;letter-spacing:1px">Splash BG (app.config)</th>
+          <th style="text-align:left;padding:8px 12px;color:#4a6080;font-size:10px;text-transform:uppercase;letter-spacing:1px">App BG (first screen)</th>
+          <th style="text-align:left;padding:8px 12px;color:#4a6080;font-size:10px;text-transform:uppercase;letter-spacing:1px">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #0c1828">
+          <td style="padding:8px 12px;font-weight:700;color:#14b8a6">ThyraScan</td>
+          <td style="padding:8px 12px;color:#4a6080">Thyroid / Hashimoto's</td>
+          <td style="padding:8px 12px"><code>#22d4be → #0a9685</code></td>
+          <td style="padding:8px 12px"><code>#14b8a6</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><span class="badge badge-ready">Live</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid #0c1828">
+          <td style="padding:8px 12px;font-weight:700;color:#8b5cf6">ADHDScan</td>
+          <td style="padding:8px 12px;color:#4a6080">ADHD / Focus</td>
+          <td style="padding:8px 12px"><code>#9d6ff5 → #7038e0</code></td>
+          <td style="padding:8px 12px"><code>#8b5cf6</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><span class="badge badge-live">Live — Icon Needs Update</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid #0c1828">
+          <td style="padding:8px 12px;font-weight:700;color:#22c55e">IBSScan</td>
+          <td style="padding:8px 12px;color:#4a6080">IBS / Gut Health</td>
+          <td style="padding:8px 12px"><code>#4ade80 → #15803d</code></td>
+          <td style="padding:8px 12px"><code>#22c55e</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><span class="badge badge-design">In Design</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid #0c1828">
+          <td style="padding:8px 12px;font-weight:700;color:#f97316">GERDScan</td>
+          <td style="padding:8px 12px;color:#4a6080">GERD / Acid Reflux</td>
+          <td style="padding:8px 12px"><code>#fb923c → #c2410c</code></td>
+          <td style="padding:8px 12px"><code>#f97316</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><span class="badge badge-planned">Planned</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid #0c1828">
+          <td style="padding:8px 12px;font-weight:700;color:#a855f7">PCOSScan</td>
+          <td style="padding:8px 12px;color:#4a6080">PCOS / Hormones</td>
+          <td style="padding:8px 12px"><code>#c084fc → #7e22ce</code></td>
+          <td style="padding:8px 12px"><code>#a855f7</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><span class="badge badge-planned">Planned</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid #0c1828">
+          <td style="padding:8px 12px;font-weight:700;color:#3b82f6">MigraineScan</td>
+          <td style="padding:8px 12px;color:#4a6080">Migraine / Headache</td>
+          <td style="padding:8px 12px"><code>#60a5fa → #1d4ed8</code></td>
+          <td style="padding:8px 12px"><code>#3b82f6</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><span class="badge badge-planned">Planned</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid #0c1828">
+          <td style="padding:8px 12px;font-weight:700;color:#eab308">HistaScan</td>
+          <td style="padding:8px 12px;color:#4a6080">Histamine Intolerance</td>
+          <td style="padding:8px 12px"><code>#fde047 → #b45309</code></td>
+          <td style="padding:8px 12px"><code>#eab308</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><span class="badge badge-planned">Planned</span></td>
+        </tr>
+        <tr>
+          <td style="padding:8px 12px;font-weight:700;color:#ec4899">EndoScan</td>
+          <td style="padding:8px 12px;color:#4a6080">Endometriosis</td>
+          <td style="padding:8px 12px"><code>#f472b6 → #be185d</code></td>
+          <td style="padding:8px 12px"><code>#ec4899</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><code>#FDFBF7</code></td>
+          <td style="padding:8px 12px"><span class="badge badge-planned">Planned</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── SVG PATHS ── -->
+  <div class="notes-grid" style="margin-bottom:24px">
+
+    <div class="note">
+      <h4>ThyraScan — Thyroid Gland Symbol</h4>
+      <p class="step">
+        <b>viewBox:</b> 0 0 100 100<br>
+        <b>Visual center:</b> (50, 54.5) — use for centering in splash<br><br>
+        <code>&lt;path d="M50,58 C43,44 22,38 19,52 C16,66 37,73 50,64 Z" fill="white"/&gt;</code><br>
+        <code>&lt;path d="M50,58 C57,44 78,38 81,52 C84,66 63,73 50,64 Z" fill="white"/&gt;</code><br>
+        <code>&lt;ellipse cx="50" cy="62" rx="4" ry="8" fill="white" fill-opacity="0.4"/&gt;</code><br>
+        <code>&lt;path d="M46,56 C42,50 37,44 33,40" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.65"/&gt;</code><br>
+        <code>&lt;path d="M54,56 C58,50 63,44 67,40" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.65"/&gt;</code><br>
+        <code>&lt;circle cx="33" cy="39" r="3" fill="white" fill-opacity="0.65"/&gt;</code><br>
+        <code>&lt;circle cx="67" cy="39" r="3" fill="white" fill-opacity="0.65"/&gt;</code>
+      </p>
+    </div>
+
+    <div class="note">
+      <h4>ADHDScan — Lightning Bolt Symbol</h4>
+      <p class="step">
+        <b>viewBox:</b> 0 0 100 100<br>
+        <b>Visual center:</b> (50, 50)<br><br>
+        <code>&lt;polygon points="57,17 35,54 50,54 42,83 65,46 50,46" fill="white"/&gt;</code><br><br>
+        <b>Icon background:</b> solid <code>#8b5cf6</code><br>
+        <b>Splash gradient:</b> <code>linear-gradient(155deg, #9d6ff5, #7038e0)</code>
+      </p>
+    </div>
+
+    <div class="note">
+      <h4>IBSScan — Gut/Colon Symbol</h4>
+      <p class="step">
+        <b>viewBox:</b> 0 0 100 100<br>
+        <b>Visual center:</b> (50, 55)<br><br>
+        <code>&lt;path d="M26,27 C13,27 12,41 27,42 L61,42 C75,42 77,55 63,57 L37,57 C20,57 18,71 33,72 L70,72 C84,72 85,84 71,84" fill="none" stroke="white" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round"/&gt;</code><br><br>
+        <b>Icon background:</b> solid <code>#22c55e</code><br>
+        <b>Splash gradient:</b> <code>linear-gradient(155deg, #4ade80, #15803d)</code>
+      </p>
+    </div>
+
+    <div class="note">
+      <h4>GERDScan — Flame/Stomach Symbol</h4>
+      <p class="step">
+        <b>viewBox:</b> 0 0 100 100<br>
+        <b>Visual center:</b> (50, 52)<br><br>
+        <code>&lt;path d="M50,83 C30,83 19,66 25,49 C29,37 36,31 36,43 C40,56 44,44 42,28 C50,16 62,12 60,31 C59,42 66,47 73,38 C78,54 73,83 50,83 Z" fill="white"/&gt;</code><br>
+        <code>&lt;path d="M50,76 C37,76 31,65 36,53 C39,46 44,44 44,51 C46,59 49,52 49,43 C53,38 58,40 57,50 C56.5,56 61,60 66,53 C69,63 66,76 50,76 Z" fill="#f97316" opacity="0.3"/&gt;</code><br><br>
+        <b>Icon background:</b> solid <code>#f97316</code><br>
+        <b>Splash gradient:</b> <code>linear-gradient(155deg, #fb923c, #c2410c)</code>
+      </p>
+    </div>
+
+    <div class="note">
+      <h4>PCOSScan — Ovary/Follicle Symbol</h4>
+      <p class="step">
+        <b>viewBox:</b> 0 0 100 100<br>
+        <b>Visual center:</b> (50, 54)<br><br>
+        <code>&lt;path d="M34,50 Q50,37 66,50" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/&gt;</code><br>
+        <code>&lt;circle cx="30" cy="57" r="15" fill="none" stroke="white" stroke-width="6.5"/&gt;</code><br>
+        <code>&lt;circle cx="70" cy="57" r="15" fill="none" stroke="white" stroke-width="6.5"/&gt;</code><br>
+        <code>&lt;circle cx="30" cy="57" r="5" fill="white"/&gt;</code><br>
+        <code>&lt;circle cx="70" cy="57" r="5" fill="white"/&gt;</code><br>
+        <code>&lt;circle cx="21" cy="51" r="2.5" fill="white" opacity="0.4"/&gt;</code><br>
+        <code>&lt;circle cx="39" cy="44" r="2.5" fill="white" opacity="0.4"/&gt;</code><br>
+        <code>&lt;circle cx="61" cy="44" r="2.5" fill="white" opacity="0.4"/&gt;</code><br>
+        <code>&lt;circle cx="79" cy="51" r="2.5" fill="white" opacity="0.4"/&gt;</code><br><br>
+        <b>Icon background:</b> solid <code>#a855f7</code><br>
+        <b>Splash gradient:</b> <code>linear-gradient(155deg, #c084fc, #7e22ce)</code>
+      </p>
+    </div>
+
+    <div class="note">
+      <h4>MigraineScan — Brain/Bolt Symbol</h4>
+      <p class="step">
+        <b>viewBox:</b> 0 0 100 100<br>
+        <b>Visual center:</b> (50, 50)<br><br>
+        <code>&lt;ellipse cx="50" cy="43" rx="24" ry="26" fill="white"/&gt;</code><br>
+        <code>&lt;rect x="44" y="67" width="12" height="10" rx="3" fill="white"/&gt;</code><br>
+        <code>&lt;polygon points="55,24 43,47 52,47 43,64 63,39 54,39" fill="rgba(29,78,216,0.75)"/&gt;</code><br><br>
+        <b>Icon background:</b> solid <code>#3b82f6</code><br>
+        <b>Splash gradient:</b> <code>linear-gradient(155deg, #60a5fa, #1d4ed8)</code>
+      </p>
+    </div>
+
+    <div class="note">
+      <h4>HistaScan — Shield/H Symbol</h4>
+      <p class="step">
+        <b>viewBox:</b> 0 0 100 100<br>
+        <b>Visual center:</b> (50, 50)<br><br>
+        <code>&lt;path d="M50,17 L74,27 L74,54 C74,68 62,78 50,83 C38,78 26,68 26,54 L26,27 Z" fill="white"/&gt;</code><br>
+        <code>&lt;path d="M38,37 L38,63 M38,50 L62,50 M62,37 L62,63" fill="none" stroke="#d97706" stroke-width="8" stroke-linecap="round"/&gt;</code><br><br>
+        <b>Icon background:</b> solid <code>#eab308</code><br>
+        <b>Splash gradient:</b> <code>linear-gradient(155deg, #fde047, #b45309)</code>
+      </p>
+    </div>
+
+    <div class="note">
+      <h4>EndoScan — Endometrium/Petal Symbol</h4>
+      <p class="step">
+        <b>viewBox:</b> 0 0 100 100<br>
+        <b>Visual center:</b> (50, 50)<br><br>
+        <code>&lt;ellipse cx="50" cy="34" rx="12" ry="18" fill="white"/&gt;</code><br>
+        <code>&lt;ellipse cx="50" cy="66" rx="12" ry="18" fill="white"/&gt;</code><br>
+        <code>&lt;ellipse cx="34" cy="50" rx="18" ry="12" fill="white"/&gt;</code><br>
+        <code>&lt;ellipse cx="66" cy="50" rx="18" ry="12" fill="white"/&gt;</code><br>
+        <code>&lt;circle cx="50" cy="50" r="12" fill="#ec4899" opacity="0.9"/&gt;</code><br>
+        <code>&lt;circle cx="50" cy="50" r="5.5" fill="white"/&gt;</code><br><br>
+        <b>Icon background:</b> solid <code>#ec4899</code><br>
+        <b>Splash gradient:</b> <code>linear-gradient(155deg, #f472b6, #be185d)</code>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ── EXPO ASSET REQUIREMENTS ── -->
+  <div class="notes-grid" style="margin-bottom:24px">
+
+    <div class="note">
+      <h4>Required Asset Files (every app)</h4>
+      <p class="step">
+        <b>assets/icon.png</b> — 1024×1024, no transparency, no rounded corners (App Store adds them)<br>
+        <b>assets/splash-icon.png</b> — 1284×2778 (iPhone 14 Pro Max native), gradient bg + white symbol + text<br>
+        <b>assets/android-icon-foreground.png</b> — 1024×1024, transparent bg, white symbol, symbol within 72% safe zone (~737px)<br>
+        <b>assets/android-icon-background.png</b> — 1024×1024, solid brand color fill<br>
+        <b>assets/android-icon-monochrome.png</b> — 1024×1024, black bg, white symbol<br><br>
+        <b>Generate all with:</b><br>
+        <code>npm install sharp --no-save</code><br>
+        <code>node scripts/generate-app-icon.js</code>
+      </p>
+    </div>
+
+    <div class="note">
+      <h4>app.config.ts Splash Settings</h4>
+      <p class="step">
+        <b>splash.image:</b> <code>"./assets/splash-icon.png"</code><br>
+        <b>splash.resizeMode:</b> <code>"contain"</code><br>
+        <b>splash.backgroundColor:</b> Match the app's first screen background (<code>#FDFBF7</code> for warm-cream apps) — this fills the area outside the image on smaller devices, and is visible briefly as the splash fades out. Must match or the transition is jarring.<br><br>
+        <b>android.adaptiveIcon.backgroundColor:</b> Solid mid-point of gradient (e.g. <code>#14b8a6</code> for ThyraScan). This is what shows behind the foreground on older Android.<br><br>
+        Requires <code>eas build</code> to take effect — not patchable via OTA JS update.
+      </p>
+    </div>
+
+    <div class="note">
+      <h4>Splash Script Structure (generate-app-icon.js)</h4>
+      <p class="step">
+        Use the ThyraScan <code>scripts/generate-app-icon.js</code> as the template.<br><br>
+        Key parameters to change per app:<br>
+        <b>1.</b> <code>thyroidPaths()</code> → replace with the app's SVG paths function<br>
+        <b>2.</b> Gradient stops in <code>&lt;linearGradient id="bg"&gt;</code><br>
+        <b>3.</b> Android background fill color<br>
+        <b>4.</b> App name string in the splash text element<br>
+        <b>5.</b> Tagline string (e.g. "IBS-aware food scanning")<br><br>
+        Visual center of symbol in 100-unit space:<br>
+        → ThyraScan: (50, 54.5)<br>
+        → All others: (50, 50) unless noted above
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ── APP.TSX SPLASH PATTERN ── -->
+  <div class="note" style="max-width:100%;margin-bottom:24px">
+    <h4>App.tsx — Controlled Splash Fade Pattern (copy this for every new app)</h4>
+    <p class="step" style="white-space:pre;font-family:'SF Mono',monospace;font-size:11px;overflow-x:auto">
+<b>// 1. Install:</b>  npx expo install expo-splash-screen
+
+<b>// 2. Top of App.tsx (module level — outside any component):</b>
+import * as SplashScreen from "expo-splash-screen";
+SplashScreen.preventAutoHideAsync();
+SplashScreen.setOptions({ fade: true, duration: 400 });
+
+<b>// 3. Replace AppNavigator with a wrapper that hides after all providers load:</b>
+function AppNavigatorWithSplash() {
+  const { loading: authLoading } = useAuth();
+  const { loading: subscriptionLoading } = useSubscription();
+  const { loading: profileLoading } = useUserProfile();
+  const appReady = !authLoading &amp;&amp; !subscriptionLoading &amp;&amp; !profileLoading;
+  useEffect(() => { if (appReady) SplashScreen.hideAsync(); }, [appReady]);
+  return &lt;AppNavigator /&gt;;
+}
+
+<b>// 4. Inside the provider tree in App(), use AppNavigatorWithSplash instead of AppNavigator.</b>
+<b>// IMPORTANT:</b> AppNavigatorWithSplash must be INSIDE all three providers so hooks work.
+    </p>
+  </div>
+
+  <!-- ── TAGLINES ── -->
+  <div class="note" style="max-width:100%">
+    <h4>Splash Screen Taglines (canonical)</h4>
+    <p class="step">
+      <b>ThyraScan:</b> "Thyroid-aware food scanning"<br>
+      <b>ADHDScan:</b> "Scan for focus &amp; attention triggers"<br>
+      <b>IBSScan:</b> "IBS &amp; gut health food scanning"<br>
+      <b>GERDScan:</b> "Acid reflux food scanning"<br>
+      <b>PCOSScan:</b> "PCOS &amp; hormone food scanning"<br>
+      <b>MigraineScan:</b> "Migraine trigger food scanning"<br>
+      <b>HistaScan:</b> "Histamine intolerance food scanning"<br>
+      <b>EndoScan:</b> "Endometriosis food scanning"<br><br>
+      <b>Byline (all apps):</b> "by SafeScan Systems"<br>
+      <b>Bundle ID pattern:</b> <code>com.&lt;appname lowercase&gt;.app</code> (e.g. <code>com.ibsscan.app</code>)
+    </p>
+  </div>
+
+</section>
+
+</div><!-- /page-wrap -->
+</body>
+</html>
