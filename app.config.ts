@@ -22,7 +22,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     usesAppleSignIn: true,
     infoPlist: {
       NSCameraUsageDescription:
-        "Allow ThyraScan to access your camera to scan food barcodes.",
+        "ThyraScan uses your camera to scan food barcodes in real time. No photos are captured or stored.",
       ITSAppUsesNonExemptEncryption: false,
     },
     privacyManifests: {
@@ -62,7 +62,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       "expo-camera",
       {
         cameraPermission:
-          "Allow ThyraScan to access your camera to scan food barcodes.",
+          "ThyraScan uses your camera to scan food barcodes in real time. No photos are captured or stored.",
       },
     ],
     "expo-apple-authentication",

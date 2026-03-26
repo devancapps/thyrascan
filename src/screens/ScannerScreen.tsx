@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  Linking,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -113,6 +114,7 @@ export default function ScannerScreen({ navigation }: Props) {
   }
 
   if (!permission.granted) {
+    const isDenied = permission.status === "denied";
     return (
       <SafeAreaView style={styles.permissionContainer}>
         <Ionicons
@@ -120,16 +122,22 @@ export default function ScannerScreen({ navigation }: Props) {
           size={64}
           color={colors.textSecondary}
         />
-        <Text style={styles.permissionTitle}>Camera Access Required</Text>
+        <Text style={styles.permissionTitle}>
+          {isDenied ? "Camera Access Denied" : "Camera Access Required"}
+        </Text>
         <Text style={styles.permissionText}>
-          We need camera access to scan food barcodes. No photos are stored.
+          {isDenied
+            ? "To scan barcodes, enable camera access for ThyraScan in your iPhone Settings."
+            : "We need camera access to scan food barcodes. No photos are captured or stored."}
         </Text>
         <TouchableOpacity
           style={buttonStyle}
-          onPress={requestPermission}
+          onPress={isDenied ? () => Linking.openSettings() : requestPermission}
           activeOpacity={0.8}
         >
-          <Text style={buttonTextStyle}>Continue</Text>
+          <Text style={buttonTextStyle}>
+            {isDenied ? "Open Settings" : "Continue"}
+          </Text>
         </TouchableOpacity>
       </SafeAreaView>
     );
