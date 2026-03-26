@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThyraScan — Icon Concepts</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0f0f0f;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #fff;
+      padding: 48px 32px;
+      min-height: 100vh;
+    }
+    h1 { font-size: 22px; font-weight: 600; margin-bottom: 8px; color: #e0d6f5; }
+    p { font-size: 13px; color: #888; margin-bottom: 48px; }
+    .grid {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .icon-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .icon-card svg {
+      width: 180px;
+      height: 180px;
+      border-radius: 40px;
+      display: block;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+    .desc {
+      font-size: 11px;
+      color: #555;
+      text-align: center;
+      max-width: 140px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <h1>ThyraScan — App Icon Concepts</h1>
+  <p>5 icon directions for App Store submission</p>
+
+  <div class="grid">
+
+    <!-- ICON 1: Butterfly Scanner -->
+    <div class="icon-card">
+      <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g1bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#2d1b6e"/>
+            <stop offset="100%" style="stop-color:#6b3fa0"/>
+          </linearGradient>
+          <linearGradient id="g1wing" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#c084fc"/>
+            <stop offset="100%" style="stop-color:#e879f9"/>
+          </linearGradient>
+          <linearGradient id="g1scan" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#f0abfc;stop-opacity:0"/>
+            <stop offset="50%" style="stop-color:#f0abfc;stop-opacity:0.7"/>
+            <stop offset="100%" style="stop-color:#f0abfc;stop-opacity:0"/>
+          </linearGradient>
+        </defs>
+        <!-- Background -->
+        <rect width="180" height="180" rx="40" fill="url(#g1bg)"/>
+        <!-- Subtle grid -->
+        <line x1="45" y1="0" x2="45" y2="180" stroke="#ffffff08" stroke-width="1"/>
+        <line x1="90" y1="0" x2="90" y2="180" stroke="#ffffff08" stroke-width="1"/>
+        <line x1="135" y1="0" x2="135" y2="180" stroke="#ffffff08" stroke-width="1"/>
+        <line x1="0" y1="45" x2="180" y2="45" stroke="#ffffff08" stroke-width="1"/>
+        <line x1="0" y1="90" x2="180" y2="90" stroke="#ffffff08" stroke-width="1"/>
+        <line x1="0" y1="135" x2="180" y2="135" stroke="#ffffff08" stroke-width="1"/>
+        <!-- Left wing -->
+        <ellipse cx="72" cy="82" rx="30" ry="22" fill="url(#g1wing)" opacity="0.9" transform="rotate(-20, 72, 82)"/>
+        <!-- Right wing -->
+        <ellipse cx="108" cy="82" rx="30" ry="22" fill="url(#g1wing)" opacity="0.9" transform="rotate(20, 108, 82)"/>
+        <!-- Lower left wing -->
+        <ellipse cx="70" cy="102" rx="20" ry="14" fill="#a855f7" opacity="0.7" transform="rotate(15, 70, 102)"/>
+        <!-- Lower right wing -->
+        <ellipse cx="110" cy="102" rx="20" ry="14" fill="#a855f7" opacity="0.7" transform="rotate(-15, 110, 102)"/>
+        <!-- Body (thyroid lobes) -->
+        <ellipse cx="87" cy="84" rx="7" ry="12" fill="#f5d0fe" opacity="0.95"/>
+        <ellipse cx="93" cy="84" rx="7" ry="12" fill="#f5d0fe" opacity="0.95"/>
+        <!-- Isthmus -->
+        <rect x="86" y="92" width="8" height="5" rx="2.5" fill="#f5d0fe" opacity="0.95"/>
+        <!-- Scan line -->
+        <rect x="30" y="78" width="120" height="16" fill="url(#g1scan)" opacity="0.6"/>
+        <line x1="30" y1="86" x2="150" y2="86" stroke="#f0abfc" stroke-width="1.5" opacity="0.8"/>
+        <!-- Corner brackets -->
+        <path d="M30 50 L30 38 L42 38" stroke="#c084fc" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+        <path d="M150 50 L150 38 L138 38" stroke="#c084fc" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+        <path d="M30 130 L30 142 L42 142" stroke="#c084fc" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+        <path d="M150 130 L150 142 L138 142" stroke="#c084fc" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+      </svg>
+      <div class="label">Butterfly Scanner</div>
+      <div class="desc">Thyroid butterfly + scan brackets on deep purple</div>
+    </div>
+
+    <!-- ICON 2: Shield Leaf -->
+    <div class="icon-card">
+      <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g2bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#064e3b"/>
+            <stop offset="100%" style="stop-color:#065f46"/>
+          </linearGradient>
+          <linearGradient id="g2shield" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#34d399"/>
+            <stop offset="100%" style="stop-color:#10b981"/>
+          </linearGradient>
+          <linearGradient id="g2leaf" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#6ee7b7"/>
+            <stop offset="100%" style="stop-color:#d1fae5"/>
+          </linearGradient>
+        </defs>
+        <rect width="180" height="180" rx="40" fill="url(#g2bg)"/>
+        <!-- Glow -->
+        <circle cx="90" cy="88" r="64" fill="#10b981" opacity="0.08"/>
+        <!-- Shield shape -->
+        <path d="M90 34 L136 54 L136 94 C136 120 90 148 90 148 C90 148 44 120 44 94 L44 54 Z"
+              fill="url(#g2shield)" opacity="0.15" stroke="#34d399" stroke-width="2" stroke-opacity="0.3"/>
+        <!-- Inner shield fill -->
+        <path d="M90 42 L128 59 L128 94 C128 116 90 140 90 140 C90 140 52 116 52 94 L52 59 Z"
+              fill="#065f46" opacity="0.6"/>
+        <!-- Leaf -->
+        <path d="M90 115 C90 115 62 100 62 76 C62 62 74 52 90 52 C106 52 118 62 118 76 C118 100 90 115 90 115 Z"
+              fill="url(#g2leaf)" opacity="0.92"/>
+        <!-- Leaf vein center -->
+        <line x1="90" y1="112" x2="90" y2="58" stroke="#064e3b" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        <!-- Leaf veins -->
+        <line x1="90" y1="75" x2="78" y2="67" stroke="#064e3b" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="90" y1="75" x2="102" y2="67" stroke="#064e3b" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="90" y1="87" x2="74" y2="80" stroke="#064e3b" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="90" y1="87" x2="106" y2="80" stroke="#064e3b" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="90" y1="99" x2="76" y2="95" stroke="#064e3b" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="90" y1="99" x2="104" y2="95" stroke="#064e3b" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <!-- Checkmark at bottom of shield -->
+        <path d="M76 132 L86 142 L104 122" stroke="#34d399" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="label">Shield & Leaf</div>
+      <div class="desc">Protection + natural wellness on forest green</div>
+    </div>
+
+    <!-- ICON 3: Warm Scan -->
+    <div class="icon-card">
+      <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g3bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#fdf4f0"/>
+            <stop offset="100%" style="stop-color:#fde8df"/>
+          </linearGradient>
+          <linearGradient id="g3circle" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#fb923c"/>
+            <stop offset="100%" style="stop-color:#f43f5e"/>
+          </linearGradient>
+          <linearGradient id="g3scan2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#f43f5e;stop-opacity:0"/>
+            <stop offset="50%" style="stop-color:#f43f5e;stop-opacity:0.5"/>
+            <stop offset="100%" style="stop-color:#f43f5e;stop-opacity:0"/>
+          </linearGradient>
+        </defs>
+        <rect width="180" height="180" rx="40" fill="url(#g3bg)"/>
+        <!-- Barcode bars background -->
+        <rect x="32" y="52" width="5" height="76" rx="2" fill="#f43f5e" opacity="0.12"/>
+        <rect x="42" y="52" width="3" height="76" rx="1.5" fill="#f43f5e" opacity="0.08"/>
+        <rect x="50" y="52" width="7" height="76" rx="2" fill="#f43f5e" opacity="0.12"/>
+        <rect x="62" y="52" width="4" height="76" rx="2" fill="#f43f5e" opacity="0.08"/>
+        <rect x="71" y="52" width="6" height="76" rx="2" fill="#f43f5e" opacity="0.12"/>
+        <rect x="82" y="52" width="3" height="76" rx="1.5" fill="#f43f5e" opacity="0.08"/>
+        <rect x="90" y="52" width="8" height="76" rx="2" fill="#f43f5e" opacity="0.12"/>
+        <rect x="103" y="52" width="4" height="76" rx="2" fill="#f43f5e" opacity="0.08"/>
+        <rect x="112" y="52" width="6" height="76" rx="2" fill="#f43f5e" opacity="0.12"/>
+        <rect x="123" y="52" width="3" height="76" rx="1.5" fill="#f43f5e" opacity="0.08"/>
+        <rect x="131" y="52" width="7" height="76" rx="2" fill="#f43f5e" opacity="0.12"/>
+        <rect x="143" y="52" width="5" height="76" rx="2" fill="#f43f5e" opacity="0.12"/>
+        <!-- Central glow circle -->
+        <circle cx="90" cy="90" r="44" fill="url(#g3circle)" opacity="0.12"/>
+        <!-- Magnifying glass -->
+        <circle cx="86" cy="85" r="28" fill="white" opacity="0.9" stroke="#fb923c" stroke-width="3"/>
+        <circle cx="86" cy="85" r="22" fill="#fff5f0" stroke="#f97316" stroke-width="1.5" stroke-opacity="0.4"/>
+        <!-- Thyroid inside lens -->
+        <ellipse cx="83" cy="84" rx="6" ry="10" fill="#fb923c" opacity="0.85"/>
+        <ellipse cx="89" cy="84" rx="6" ry="10" fill="#fb923c" opacity="0.85"/>
+        <rect x="82" y="91" width="8" height="4" rx="2" fill="#fb923c" opacity="0.85"/>
+        <!-- Scan line through lens -->
+        <line x1="62" y1="85" x2="110" y2="85" stroke="#f43f5e" stroke-width="2" opacity="0.6"/>
+        <rect x="62" y="82" width="48" height="6" fill="url(#g3scan2)"/>
+        <!-- Handle -->
+        <line x1="107" y1="106" x2="124" y2="124" stroke="#fb923c" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+        <line x1="107" y1="106" x2="124" y2="124" stroke="#fde8df" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+      <div class="label">Warm Scan</div>
+      <div class="desc">Magnifying lens + thyroid on warm cream</div>
+    </div>
+
+    <!-- ICON 4: Deep Teal Check -->
+    <div class="icon-card">
+      <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g4bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#0f172a"/>
+            <stop offset="100%" style="stop-color:#0f2a3a"/>
+          </linearGradient>
+          <linearGradient id="g4ring" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#22d3ee"/>
+            <stop offset="100%" style="stop-color:#0ea5e9"/>
+          </linearGradient>
+          <linearGradient id="g4inner" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#164e63"/>
+            <stop offset="100%" style="stop-color:#0c4a6e"/>
+          </linearGradient>
+        </defs>
+        <rect width="180" height="180" rx="40" fill="url(#g4bg)"/>
+        <!-- Outer glow rings -->
+        <circle cx="90" cy="88" r="68" fill="none" stroke="#22d3ee" stroke-width="1" opacity="0.08"/>
+        <circle cx="90" cy="88" r="56" fill="none" stroke="#22d3ee" stroke-width="1" opacity="0.1"/>
+        <!-- Main circle -->
+        <circle cx="90" cy="88" r="48" fill="url(#g4inner)" stroke="url(#g4ring)" stroke-width="3"/>
+        <!-- Butterfly / thyroid wings inside -->
+        <ellipse cx="78" cy="82" rx="16" ry="11" fill="#22d3ee" opacity="0.18" transform="rotate(-15, 78, 82)"/>
+        <ellipse cx="102" cy="82" rx="16" ry="11" fill="#22d3ee" opacity="0.18" transform="rotate(15, 102, 82)"/>
+        <!-- Checkmark -->
+        <path d="M66 88 L80 103 L114 70" stroke="url(#g4ring)" stroke-width="7" fill="none"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Safe label arc hint -->
+        <text x="90" y="148" text-anchor="middle" font-family="-apple-system, sans-serif"
+              font-size="11" font-weight="700" fill="#22d3ee" opacity="0.7" letter-spacing="3">SAFE</text>
+        <!-- Dot indicators bottom -->
+        <circle cx="74" cy="148" r="3" fill="#22d3ee" opacity="0.4"/>
+        <circle cx="90" cy="148" r="3" fill="#22d3ee" opacity="0.9"/>
+        <circle cx="106" cy="148" r="3" fill="#22d3ee" opacity="0.4"/>
+      </svg>
+      <div class="label">Safe Check</div>
+      <div class="desc">Bold checkmark verdict on dark navy/teal</div>
+    </div>
+
+    <!-- ICON 5: Lavender Minimal -->
+    <div class="icon-card">
+      <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g5bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ede9fe"/>
+            <stop offset="100%" style="stop-color:#ddd6fe"/>
+          </linearGradient>
+          <linearGradient id="g5pill" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#7c3aed"/>
+            <stop offset="100%" style="stop-color:#6d28d9"/>
+          </linearGradient>
+          <linearGradient id="g5accent" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#a78bfa"/>
+            <stop offset="100%" style="stop-color:#8b5cf6"/>
+          </linearGradient>
+        </defs>
+        <rect width="180" height="180" rx="40" fill="url(#g5bg)"/>
+        <!-- Background butterfly shadow -->
+        <ellipse cx="72" cy="84" rx="28" ry="19" fill="#c4b5fd" opacity="0.35" transform="rotate(-18, 72, 84)"/>
+        <ellipse cx="108" cy="84" rx="28" ry="19" fill="#c4b5fd" opacity="0.35" transform="rotate(18, 108, 84)"/>
+        <!-- Barcode strip at bottom -->
+        <rect x="30" y="120" width="6" height="26" rx="3" fill="#7c3aed" opacity="0.25"/>
+        <rect x="40" y="120" width="3" height="26" rx="1.5" fill="#7c3aed" opacity="0.18"/>
+        <rect x="47" y="120" width="8" height="26" rx="3" fill="#7c3aed" opacity="0.25"/>
+        <rect x="59" y="120" width="4" height="26" rx="2" fill="#7c3aed" opacity="0.18"/>
+        <rect x="67" y="120" width="7" height="26" rx="3" fill="#7c3aed" opacity="0.25"/>
+        <rect x="78" y="120" width="3" height="26" rx="1.5" fill="#7c3aed" opacity="0.18"/>
+        <rect x="85" y="120" width="9" height="26" rx="3" fill="#7c3aed" opacity="0.25"/>
+        <rect x="98" y="120" width="4" height="26" rx="2" fill="#7c3aed" opacity="0.18"/>
+        <rect x="106" y="120" width="7" height="26" rx="3" fill="#7c3aed" opacity="0.25"/>
+        <rect x="117" y="120" width="3" height="26" rx="1.5" fill="#7c3aed" opacity="0.18"/>
+        <rect x="124" y="120" width="6" height="26" rx="3" fill="#7c3aed" opacity="0.25"/>
+        <rect x="134" y="120" width="8" height="26" rx="3" fill="#7c3aed" opacity="0.25"/>
+        <rect x="146" y="120" width="4" height="26" rx="2" fill="#7c3aed" opacity="0.18"/>
+        <!-- Main thyroid shape - bold -->
+        <ellipse cx="80" cy="80" rx="22" ry="30" fill="url(#g5pill)" opacity="0.95"/>
+        <ellipse cx="100" cy="80" rx="22" ry="30" fill="url(#g5pill)" opacity="0.95"/>
+        <!-- Isthmus bridge -->
+        <rect x="79" y="95" width="22" height="10" rx="5" fill="url(#g5pill)" opacity="0.95"/>
+        <!-- Inner highlight -->
+        <ellipse cx="80" cy="74" rx="10" ry="16" fill="#ede9fe" opacity="0.18"/>
+        <ellipse cx="100" cy="74" rx="10" ry="16" fill="#ede9fe" opacity="0.18"/>
+        <!-- Scan line -->
+        <rect x="30" y="76" width="120" height="8" rx="4" fill="#7c3aed" opacity="0.12"/>
+        <line x1="30" y1="80" x2="150" y2="80" stroke="#a78bfa" stroke-width="2" opacity="0.5" stroke-dasharray="6 4"/>
+      </svg>
+      <div class="label">Lavender Thyroid</div>
+      <div class="desc">Bold thyroid glyph on brand lavender — closest to current UI</div>
+    </div>
+
+  </div>
+
+  <div style="margin-top: 48px; padding: 20px; background: #1a1a2e; border-radius: 12px; max-width: 800px;">
+    <p style="color: #888; font-size: 12px; line-height: 1.7; margin: 0;">
+      <strong style="color: #aaa;">Export notes:</strong> To use these as actual app icons, export each SVG at 1024×1024px
+      (required by App Store Connect). The rounded corners are handled by iOS — export as a square
+      (no corner radius) for the actual <code style="background:#111; padding: 1px 5px; border-radius:3px;">icon.png</code>.
+      Update <code style="background:#111; padding: 1px 5px; border-radius:3px;">assets/icon.png</code> and
+      run <code style="background:#111; padding: 1px 5px; border-radius:3px;">eas build --platform ios --profile production</code>.
+    </p>
+  </div>
+
+</body>
+</html>

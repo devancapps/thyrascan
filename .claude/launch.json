@@ -3,9 +3,15 @@
   "configurations": [
     {
       "name": "thyrascan-web",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["expo", "start", "--web", "--port", "8081"],
+      "runtimeExecutable": "/opt/homebrew/bin/node",
+      "runtimeArgs": ["/Users/devancapps/Desktop/ThyraScan/node_modules/.bin/expo", "start", "--web", "--port", "8081", "--no-dev"],
       "port": 8081
+    },
+    {
+      "name": "asset-preview",
+      "runtimeExecutable": "/opt/homebrew/bin/node",
+      "runtimeArgs": ["/Users/devancapps/Desktop/SafeScanSystems/ThyraScan/preview-server.js"],
+      "port": 8082
     }
   ]
 }

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ThyraScan — Pixel Agent Map</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d1117;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 24px;
+    color: #e6edf3;
+  }
+  h1 {
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #7d8590;
+    margin-bottom: 4px;
+  }
+  p.sub {
+    font-size: 11px;
+    color: #484f58;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+  }
+  canvas {
+    border: 1px solid #21262d;
+    border-radius: 12px;
+    background: #0d1117;
+  }
+  .legend {
+    display: flex;
+    gap: 20px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: #7d8590;
+    letter-spacing: 1px;
+  }
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+
+<h1>ThyraScan</h1>
+<p class="sub">pixel agent architecture · live data flow</p>
+<canvas id="c" width="900" height="560"></canvas>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#58a6ff"></div>External Service</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#3fb950"></div>Logic Layer</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f78166"></div>Screen / UI</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#d2a8ff"></div>Data Store</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#e3b341"></div>Core Engine</div>
+</div>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+
+// ── Nodes ──────────────────────────────────────────────────────────────
+const nodes = [
+  // User entry
+  { id: 'user',     label: 'USER',          sub: 'iOS App',              x: 450, y: 60,  color: '#e6edf3', ring: '#7d8590', r: 28 },
+
+  // Scanner
+  { id: 'scanner',  label: 'SCANNER',       sub: 'ScannerScreen',        x: 200, y: 160, color: '#f78166', ring: '#f78166', r: 24 },
+
+  // External
+  { id: 'off',      label: 'OPEN FOOD',     sub: 'FACTS API',            x: 80,  y: 300, color: '#58a6ff', ring: '#58a6ff', r: 22 },
+
+  // Logic layer
+  { id: 'db',       label: 'INGREDIENT',    sub: 'DATABASE',             x: 280, y: 300, color: '#e3b341', ring: '#e3b341', r: 22 },
+  { id: 'matcher',  label: 'MATCHER',       sub: 'ingredientMatcher',    x: 450, y: 280, color: '#3fb950', ring: '#3fb950', r: 22 },
+  { id: 'scorer',   label: 'SCORING',       sub: 'ENGINE',               x: 620, y: 300, color: '#3fb950', ring: '#3fb950', r: 22 },
+
+  // Result
+  { id: 'result',   label: 'RESULT',        sub: 'SAFE · REVIEW · AVOID',x: 760, y: 160, color: '#f78166', ring: '#f78166', r: 24 },
+
+  // Data stores
+  { id: 'firebase', label: 'FIREBASE',      sub: 'Auth + Firestore',     x: 200, y: 440, color: '#d2a8ff', ring: '#d2a8ff', r: 22 },
+  { id: 'revenuecat',label:'REVENUECAT',    sub: 'Subscriptions',        x: 700, y: 440, color: '#d2a8ff', ring: '#d2a8ff', r: 22 },
+
+  // User profile context
+  { id: 'profile',  label: 'USER PROFILE',  sub: 'condition context',    x: 450, y: 460, color: '#79c0ff', ring: '#79c0ff', r: 20 },
+];
+
+const nodeMap = {};
+nodes.forEach(n => nodeMap[n.id] = n);
+
+// ── Edges (directed) ──────────────────────────────────────────────────
+const edges = [
+  { from: 'user',       to: 'scanner',    label: 'scan' },
+  { from: 'scanner',    to: 'off',        label: 'barcode' },
+  { from: 'off',        to: 'matcher',    label: 'ingredients text' },
+  { from: 'db',         to: 'matcher',    label: 'patterns' },
+  { from: 'matcher',    to: 'scorer',     label: 'matches[]' },
+  { from: 'profile',    to: 'scorer',     label: 'condition' },
+  { from: 'scorer',     to: 'result',     label: 'ScoringResult' },
+  { from: 'result',     to: 'user',       label: 'verdict' },
+  { from: 'scanner',    to: 'firebase',   label: 'recordScan()' },
+  { from: 'user',       to: 'firebase',   label: 'auth' },
+  { from: 'user',       to: 'revenuecat', label: 'subscription' },
+  { from: 'firebase',   to: 'profile',    label: 'condition' },
+];
+
+// ── Particles ──────────────────────────────────────────────────────────
+const particles = [];
+
+function spawnParticle(edge) {
+  const a = nodeMap[edge.from];
+  const b = nodeMap[edge.to];
+  particles.push({
+    edge,
+    t: 0,
+    speed: 0.004 + Math.random() * 0.003,
+    ax: a.x, ay: a.y,
+    bx: b.x, by: b.y,
+    color: a.color,
+    size: 3,
+  });
+}
+
+// Stagger initial spawns
+edges.forEach((e, i) => {
+  setTimeout(() => {
+    setInterval(() => spawnParticle(e), 1800 + Math.random() * 800);
+    spawnParticle(e);
+  }, i * 200);
+});
+
+// ── Pixel agent bobbing ───────────────────────────────────────────────
+let tick = 0;
+
+function drawPixelAgent(x, y, color, size, bobOffset) {
+  const s = size / 8;
+  const bx = Math.floor(x - s * 4);
+  const by = Math.floor(y - s * 4 + bobOffset);
+  const pixels = [
+    // head row 1
+    [2,0],[3,0],[4,0],[5,0],
+    // head row 2
+    [1,1],[2,1],[3,1],[4,1],[5,1],[6,1],
+    // eyes
+    [2,2],[3,2],[4,2],[5,2],
+    // mouth
+    [2,3],[5,3],
+    // body
+    [1,4],[2,4],[3,4],[4,4],[5,4],[6,4],
+    [2,5],[3,5],[4,5],[5,5],
+    // legs
+    [2,6],[5,6],
+    [2,7],[5,7],
+  ];
+  ctx.fillStyle = color;
+  pixels.forEach(([px, py]) => {
+    ctx.fillRect(bx + px * s, by + py * s, s - 0.5, s - 0.5);
+  });
+}
+
+// ── Edge drawing ───────────────────────────────────────────────────────
+function drawEdge(edge) {
+  const a = nodeMap[edge.from];
+  const b = nodeMap[edge.to];
+
+  ctx.beginPath();
+  ctx.moveTo(a.x, a.y);
+  ctx.lineTo(b.x, b.y);
+  ctx.strokeStyle = 'rgba(48, 54, 61, 0.8)';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 6]);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Label at midpoint
+  const mx = (a.x + b.x) / 2;
+  const my = (a.y + b.y) / 2;
+  ctx.font = '9px Courier New';
+  ctx.fillStyle = '#484f58';
+  ctx.textAlign = 'center';
+  ctx.fillText(edge.label, mx, my - 6);
+}
+
+// ── Node drawing ───────────────────────────────────────────────────────
+function drawNode(node, bobs) {
+  const bob = bobs[node.id] || 0;
+  const nx = node.x;
+  const ny = node.y + bob;
+
+  // Outer ring glow
+  ctx.beginPath();
+  ctx.arc(nx, ny, node.r + 6, 0, Math.PI * 2);
+  const grd = ctx.createRadialGradient(nx, ny, node.r, nx, ny, node.r + 10);
+  grd.addColorStop(0, node.ring + '22');
+  grd.addColorStop(1, 'transparent');
+  ctx.fillStyle = grd;
+  ctx.fill();
+
+  // Ring
+  ctx.beginPath();
+  ctx.arc(nx, ny, node.r, 0, Math.PI * 2);
+  ctx.strokeStyle = node.ring + '88';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // Fill
+  ctx.beginPath();
+  ctx.arc(nx, ny, node.r - 2, 0, Math.PI * 2);
+  ctx.fillStyle = '#161b22';
+  ctx.fill();
+
+  // Pixel agent inside
+  drawPixelAgent(nx, ny - 4, node.color, node.r * 1.2, 0);
+
+  // Label below
+  ctx.font = 'bold 9px Courier New';
+  ctx.fillStyle = node.color;
+  ctx.textAlign = 'center';
+  ctx.fillText(node.label, nx, ny + node.r + 12);
+
+  ctx.font = '8px Courier New';
+  ctx.fillStyle = '#484f58';
+  ctx.fillText(node.sub, nx, ny + node.r + 22);
+}
+
+// ── Main render loop ──────────────────────────────────────────────────
+function render() {
+  ctx.clearRect(0, 0, W, H);
+  tick++;
+
+  // Compute bob offsets per node
+  const bobs = {};
+  nodes.forEach((n, i) => {
+    bobs[n.id] = Math.sin(tick * 0.03 + i * 0.9) * 3;
+  });
+
+  // Draw edges first
+  edges.forEach(drawEdge);
+
+  // Update + draw particles
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.t += p.speed;
+    if (p.t > 1) { particles.splice(i, 1); continue; }
+
+    const px = p.ax + (p.bx - p.ax) * p.t;
+    const py = p.ay + (p.by - p.ay) * p.t;
+
+    // Trail
+    ctx.beginPath();
+    ctx.arc(px, py, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = p.color + 'cc';
+    ctx.fill();
+
+    // Glow
+    ctx.beginPath();
+    ctx.arc(px, py, p.size + 3, 0, Math.PI * 2);
+    ctx.fillStyle = p.color + '33';
+    ctx.fill();
+  }
+
+  // Draw nodes on top
+  nodes.forEach(n => drawNode(n, bobs));
+
+  // Title watermark
+  ctx.font = '10px Courier New';
+  ctx.fillStyle = '#21262d';
+  ctx.textAlign = 'right';
+  ctx.fillText('educational tool · not medical advice', W - 12, H - 10);
+
+  requestAnimationFrame(render);
+}
+
+render();
+</script>
+</body>
+</html>

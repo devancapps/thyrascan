@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ThyraScan — Asset Verification</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0d1117; color: #e6edf3; font-family: -apple-system, sans-serif; padding: 40px; }
+h1 { font-size: 18px; font-weight: 600; margin-bottom: 32px; color: #58a6ff; }
+.grid { display: flex; gap: 32px; flex-wrap: wrap; align-items: flex-end; }
+.card { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.card img { display: block; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
+.label { font-size: 12px; color: #8b949e; text-align: center; }
+.dim { font-size: 11px; color: #484f58; }
+</style>
+</head>
+<body>
+<h1>ThyraScan — Generated Brand Assets</h1>
+<div class="grid">
+  <div class="card">
+    <img src="assets/icon.png" width="160" height="160" style="border-radius:36px">
+    <div class="label">icon.png</div>
+    <div class="dim">1024×1024 · App Store</div>
+  </div>
+  <div class="card">
+    <img src="assets/splash-icon.png" width="140" height="300" style="border-radius:20px;object-fit:cover;object-position:center">
+    <div class="label">splash-icon.png</div>
+    <div class="dim">1284×2778 · Splash</div>
+  </div>
+  <div class="card">
+    <img src="assets/android-icon-foreground.png" width="120" height="120" style="border-radius:20px;background:#14b8a6">
+    <div class="label">android-foreground.png</div>
+    <div class="dim">1024×1024 · transparent bg</div>
+  </div>
+  <div class="card">
+    <img src="assets/android-icon-background.png" width="120" height="120" style="border-radius:20px">
+    <div class="label">android-background.png</div>
+    <div class="dim">1024×1024 · solid teal</div>
+  </div>
+  <div class="card">
+    <img src="assets/android-icon-monochrome.png" width="120" height="120" style="border-radius:20px">
+    <div class="label">android-monochrome.png</div>
+    <div class="dim">1024×1024 · white on black</div>
+  </div>
+</div>
+</body>
+</html>
