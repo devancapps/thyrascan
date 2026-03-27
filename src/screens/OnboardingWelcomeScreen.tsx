@@ -1,11 +1,13 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Animated } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types";
 import ButterflyLogo from "../components/ButterflyLogo";
 import { colors, spacing, borderRadius, buttonStyle, buttonTextStyle } from "../styles/theme";
+import { useFadeIn } from "../hooks/useFadeIn";
+import { LinearGradient } from "expo-linear-gradient";
 
 type Props = NativeStackScreenProps<RootStackParamList, "OnboardingWelcome">;
 
@@ -16,11 +18,19 @@ const FEATURES = [
 ];
 
 export default function OnboardingWelcomeScreen({ navigation }: Props) {
+  const fadeStyle = useFadeIn({ delay: 100 });
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
+      <LinearGradient
+        colors={[colors.primaryLight, colors.background]}
+        style={[styles.gradientHeader, { pointerEvents: "none" }]}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+      />
+      <Animated.View style={[styles.content, fadeStyle]}>
         <View style={styles.logoWrap}>
-          <ButterflyLogo size={52} />
+          <ButterflyLogo size={92} showBackground onDark />
         </View>
 
         <Text style={styles.appName}>THYRASCAN</Text>
@@ -43,7 +53,7 @@ export default function OnboardingWelcomeScreen({ navigation }: Props) {
             </View>
           ))}
         </View>
-      </View>
+      </Animated.View>
 
       <View style={styles.footer}>
         <TouchableOpacity
@@ -66,6 +76,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
+  gradientHeader: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 280,
+  },
   content: {
     flex: 1,
     alignItems: "center",
@@ -77,10 +94,10 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 28,
-    backgroundColor: colors.primaryLight,
     alignItems: "center",
     justifyContent: "center",
     marginBottom: spacing.sm,
+    overflow: "hidden",
   },
   appName: {
     fontSize: 12,

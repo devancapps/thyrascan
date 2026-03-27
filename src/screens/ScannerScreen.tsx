@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: "rgba(0,0,0,0.4)",
+    backgroundColor: colors.overlayLight,
     alignItems: "center",
     justifyContent: "center",
     marginTop: spacing.sm,
@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
   },
   loadingOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.6)",
+    backgroundColor: colors.overlayDark,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: spacing.xl,

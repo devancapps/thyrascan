@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types";
-import { colors, spacing, borderRadius, buttonStyle, buttonTextStyle } from "../styles/theme";
+import { colors, spacing, borderRadius, buttonStyle, buttonTextStyle, hitTargets } from "../styles/theme";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Disclaimer">;
 
@@ -20,7 +20,7 @@ export default function DisclaimerScreen({ navigation }: Props) {
           <Ionicons name="chevron-back" size={24} color={colors.textPrimary} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Disclaimer</Text>
-        <View style={{ width: 40 }} />
+        <View style={{ width: hitTargets.backButton }} />
       </View>
 
       <ScrollView
@@ -138,8 +138,8 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.border,
   },
   backButton: {
-    width: 40,
-    height: 40,
+    width: hitTargets.backButton,
+    height: hitTargets.backButton,
     alignItems: "center",
     justifyContent: "center",
   },

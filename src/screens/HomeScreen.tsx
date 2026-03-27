@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Animated } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -14,6 +14,7 @@ import ButterflyLogo from "../components/ButterflyLogo";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { colors, spacing, borderRadius } from "../styles/theme";
 import { FREE_SCAN_LIMIT } from "../logic/scanLimiter";
+import { useFadeIn } from "../hooks/useFadeIn";
 
 export default function HomeScreen() {
   const navigation =
@@ -27,6 +28,7 @@ export default function HomeScreen() {
     isPremium,
   );
   const isInitialFocus = useRef(true);
+  const fadeStyle = useFadeIn();
 
   useFocusEffect(
     useCallback(() => {
@@ -59,7 +61,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
+      <Animated.View style={[styles.content, fadeStyle]}>
         {/* Header */}
         <View style={styles.header}>
           <View style={styles.logoWrap}>
@@ -101,7 +103,7 @@ export default function HomeScreen() {
             </View>
           )}
         </View>
-      </View>
+      </Animated.View>
     </SafeAreaView>
   );
 }

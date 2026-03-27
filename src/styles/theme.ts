@@ -1,32 +1,41 @@
 import { ViewStyle, TextStyle } from "react-native";
 
 export const colors = {
-  // Brand — warm amethyst (thyroid awareness butterfly)
-  primary: "#7B5EA7",
-  primaryDark: "#5B3F8A",
-  primaryLight: "#F0EBF8",
+  // Brand — teal (thyroid awareness, matching app icon #14b8a6)
+  primary: "#14b8a6",
+  primaryDark: "#0E9384",
+  primaryLight: "#E6F7F5",
 
-  // Warm coral — CTA / action (distinct from brand purple)
+  // Warm coral — CTA / action (distinct from brand teal; teal+coral = strong complementary pair)
   coral: "#E07A5F",
   coralDark: "#C8623E",
 
   // Backgrounds — warm cream, not sterile white
   background: "#FDFBF7",
-  secondaryBackground: "#F6F2EE",
+  secondaryBackground: "#F4F8F7",
 
-  // Text — warm plum tones
-  textPrimary: "#2D1F3D",
-  textSecondary: "#8B7BA8",
+  // Text — dark slate (neutral, no purple cast)
+  textPrimary: "#1A2B3B",
+  textSecondary: "#7A8D9C",
 
   // UI chrome
-  border: "#EAE4F0",
+  border: "#D8E8E6",
   white: "#FFFFFF",
   black: "#000000",
   error: "#C4604A",
-  overlay: "rgba(45, 31, 61, 0.5)",
+  overlay: "rgba(26, 43, 59, 0.5)",
+
+  // Camera / scanner overlays (replaces hardcoded rgba values)
+  overlayLight: "rgba(0, 0, 0, 0.4)",
+  overlayMedium: "rgba(0, 0, 0, 0.55)",
+  overlayDark: "rgba(0, 0, 0, 0.6)",
 
   // Premium gold
   gold: "#D4A043",
+  goldBg: "#FEF4DC",
+
+  // Severity mild (replaces hardcoded #6B7280 in IngredientBreakdown)
+  severityMild: "#6B7280",
 
   // Verdict — warm, calm (never screaming)
   verdictSafe: "#52A788",
@@ -55,27 +64,53 @@ export const borderRadius = {
   pill: 100,
 } as const;
 
+// Standardized shadow presets — use these instead of inline shadow values
+export const shadows = {
+  sm: {
+    shadowColor: colors.primaryDark,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  md: {
+    shadowColor: colors.primaryDark,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.07,
+    shadowRadius: 10,
+    elevation: 3,
+  },
+  lg: {
+    shadowColor: colors.primaryDark,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 14,
+    elevation: 5,
+  },
+} as const;
+
+// Standardized hit targets — iOS HIG minimum 44pt
+export const hitTargets = {
+  backButton: 44,
+} as const;
+
 export const cardStyle: ViewStyle = {
   backgroundColor: colors.white,
   borderRadius: borderRadius.lg,
   padding: spacing.md,
-  shadowColor: colors.primaryDark,
-  shadowOffset: { width: 0, height: 2 },
-  shadowOpacity: 0.07,
-  shadowRadius: 10,
-  elevation: 3,
+  ...shadows.md,
 };
 
 export const buttonStyle: ViewStyle = {
   height: 56,
   borderRadius: borderRadius.button,
-  backgroundColor: colors.coral,
+  backgroundColor: colors.primary,
   alignItems: "center",
   justifyContent: "center",
   paddingHorizontal: spacing.lg,
-  shadowColor: colors.coral,
+  shadowColor: colors.primaryDark,
   shadowOffset: { width: 0, height: 4 },
-  shadowOpacity: 0.3,
+  shadowOpacity: 0.25,
   shadowRadius: 10,
   elevation: 5,
 };

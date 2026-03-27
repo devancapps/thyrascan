@@ -4,7 +4,7 @@
     {
       "name": "thyrascan-web",
       "runtimeExecutable": "/opt/homebrew/bin/node",
-      "runtimeArgs": ["/Users/devancapps/Desktop/ThyraScan/node_modules/.bin/expo", "start", "--web", "--port", "8081", "--no-dev"],
+      "runtimeArgs": ["/Users/devancapps/Desktop/SafeScanSystems/ThyraScan/node_modules/.bin/expo", "start", "--web", "--port", "8081"],
       "port": 8081
     },
     {

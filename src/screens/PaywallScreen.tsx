@@ -16,6 +16,7 @@ import { RootStackParamList } from "../types";
 import { useSubscription } from "../hooks/useSubscription";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { colors, spacing, buttonStyle, buttonTextStyle } from "../styles/theme";
+import { LinearGradient } from "expo-linear-gradient";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Paywall">;
 
@@ -97,6 +98,12 @@ export default function PaywallScreen({ navigation }: Props) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <LinearGradient
+        colors={[colors.primaryLight, colors.background]}
+        style={[styles.gradientHeader, { pointerEvents: "none" }]}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+      />
       {/* Top bar: close button with equal spacing from top and right */}
       <View style={styles.topBar}>
         <TouchableOpacity
@@ -206,6 +213,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
+  gradientHeader: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 240,
+  },
   topBar: {
     flexDirection: "row",
     justifyContent: "flex-end",
@@ -245,7 +259,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 20,
-    backgroundColor: "#FEF4DC",
+    backgroundColor: colors.goldBg,
     alignItems: "center",
     justifyContent: "center",
     marginBottom: spacing.sm,

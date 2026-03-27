@@ -5,12 +5,14 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Animated,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList, Verdict } from "../types";
 import { getVerdictMessage } from "../logic/verdictGenerator";
+import { useFadeIn } from "../hooks/useFadeIn";
 import VerdictBadge from "../components/VerdictBadge";
 import IngredientBreakdown from "../components/IngredientBreakdown";
 import {
@@ -20,6 +22,7 @@ import {
   buttonTextStyle,
   cardStyle,
   typography,
+  hitTargets,
 } from "../styles/theme";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Result">;
@@ -35,6 +38,7 @@ export default function ResultScreen({ navigation, route }: Props) {
   } = route.params;
   const verdictEnum = verdict as Verdict;
   const isHistory = fromHistory === true;
+  const fadeStyle = useFadeIn({ delay: 50 });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -53,8 +57,8 @@ export default function ResultScreen({ navigation, route }: Props) {
         </View>
       )}
 
-      <ScrollView
-        style={styles.scroll}
+      <Animated.ScrollView
+        style={[styles.scroll, fadeStyle]}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
@@ -100,7 +104,7 @@ export default function ResultScreen({ navigation, route }: Props) {
             </Text>
           </Text>
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
 
       {!isHistory && (
         <View style={styles.footer}>
@@ -133,8 +137,8 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.border,
   },
   backButton: {
-    width: 40,
-    height: 40,
+    width: hitTargets.backButton,
+    height: hitTargets.backButton,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -143,7 +147,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   headerSpacer: {
-    width: 40,
+    width: hitTargets.backButton,
   },
   scroll: {
     flex: 1,

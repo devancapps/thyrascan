@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   topOverlay: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.55)",
+    backgroundColor: colors.overlayMedium,
   },
   middleRow: {
     flexDirection: "row",
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   sideOverlay: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.55)",
+    backgroundColor: colors.overlayMedium,
   },
   frame: {
     width: FRAME_SIZE,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   bottomOverlay: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.55)",
+    backgroundColor: colors.overlayMedium,
     alignItems: "center",
     paddingTop: 32,
   },

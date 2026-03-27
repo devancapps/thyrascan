@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Verdict } from "../types";
-import { colors, spacing, borderRadius } from "../styles/theme";
+import { colors, spacing, borderRadius, shadows } from "../styles/theme";
 import VerdictBadge from "./VerdictBadge";
 
 interface ProductCardProps {
@@ -54,11 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: borderRadius.lg,
     padding: spacing.md,
-    shadowColor: colors.primaryDark,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
-    shadowRadius: 8,
-    elevation: 2,
+    ...shadows.sm,
     borderWidth: 1,
     borderColor: colors.border,
   },

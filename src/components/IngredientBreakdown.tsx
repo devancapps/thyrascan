@@ -12,7 +12,7 @@ interface Props {
 const SEVERITY_COLORS: Record<string, string> = {
   significant: colors.verdictAvoid,
   moderate: colors.verdictReview,
-  mild: "#6B7280",
+  mild: colors.severityMild,
 };
 
 const CATEGORY_LABELS: Record<TriggerCategory, string> = {
