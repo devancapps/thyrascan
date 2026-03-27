@@ -14,7 +14,7 @@
         "APP_ENV": "development"
       }
     },
-    "development:simulator": {
+    "development-simulator": {
       "developmentClient": true,
       "distribution": "internal",
       "ios": {
@@ -27,16 +27,30 @@
     "preview": {
       "distribution": "internal",
       "environment": "production",
-      "env": {
-        "APP_ENV": "production"
-      }
-    },
-    "production": {
       "ios": {
         "autoIncrement": true
       },
       "env": {
         "APP_ENV": "production"
+      }
+    },
+    "production": {
+      "distribution": "store",
+      "environment": "production",
+      "ios": {
+        "autoIncrement": true
+      },
+      "env": {
+        "APP_ENV": "production"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "",
+        "ascAppId": "",
+        "appleTeamId": ""
       }
     }
   }
