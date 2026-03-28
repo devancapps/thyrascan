@@ -262,9 +262,24 @@ When making a change, maintain consistency in this order:
 
 ---
 
+## SafeScan Systems App Family
+
+ThyraScan is the first app in the SafeScan Systems family. Future apps (GutScan, PCOScan, etc.) share the same architecture, scoring engine pattern, EAS build setup, and App Store submission process.
+
+When building a new app in the family:
+1. Clone this repo as the starting point
+2. Update `app.config.ts`: `name`, `slug`, `bundleIdentifier`, `version`
+3. Replace `ingredientDatabase.ts` with the new condition's ingredient data
+4. Update `theme.ts` brand colors for the new app's identity
+5. Follow `APP_STORE_SUBMISSION.md` for the full submission process
+
+---
+
 ## Related Documents
 
 - `PRD.md` — Product requirements, user stories, success metrics
 - `TECHNICAL_ARCHITECTURE.md` — Full system design, data models, implementation phases
 - `UI_UX_DESIGN_SPEC.md` — Screen designs, flows, microcopy
 - `DATA_RISK_SCORING_MODEL.md` — Ingredient categories, scoring rules, sample outputs
+- `APP_STORE_SUBMISSION.md` — Step-by-step App Store submission guide for all SafeScan apps
+- `SECRETS_SETUP.md` — Firebase, RevenueCat, and EAS secrets configuration
